@@ -13,5 +13,10 @@ namespace Comp2007Assignment2
 		{
 
 		}
+
+        protected void btnRegister_Click(object sender, EventArgs e)
+        {
+
+        }
 	}
 }
