@@ -15,7 +15,7 @@
 </head>
 <body>
     <nav class="nav navbar-default">
-        <a href="default.aspx" class="navbar-brand">Contosos University</a>
+        <a href="default.aspx" class="navbar-brand">The Bible</a>
 
         <ul class="nav navbar-nav">
             <asp:PlaceHolder ID="plhPublic" runat="server">

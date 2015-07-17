@@ -38,12 +38,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -68,6 +71,23 @@
     <Content Include="register.aspx" />
     <Content Include="Site.Master" />
     <Content Include="packages.config" />
+    <EntityDeploy Include="Models\BibleModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>BibleModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\BibleModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BibleModel.edmx</DependentUpon>
+      <LastGenOutput>BibleModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\BibleModel.edmx.diagram">
+      <DependentUpon>BibleModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\BibleModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BibleModel.edmx</DependentUpon>
+      <LastGenOutput>BibleModel.cs</LastGenOutput>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -92,6 +112,39 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BibleBasicEnglish.cs">
+      <DependentUpon>BibleModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BibleModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BibleModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BibleModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BibleModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BibleModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BibleModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\blog.cs">
+      <DependentUpon>BibleModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\blog_post.cs">
+      <DependentUpon>BibleModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\blog_references.cs">
+      <DependentUpon>BibleModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\blog_title.cs">
+      <DependentUpon>BibleModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\user.cs">
+      <DependentUpon>BibleModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="login.aspx.cs">
@@ -119,7 +172,6 @@
   <ItemGroup>
     <Folder Include="admin\" />
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
