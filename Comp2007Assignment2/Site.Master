@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Constoso University</title>
+    <title>The Bible</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <!-- Latest compiled and minified CSS -->
@@ -24,7 +24,7 @@
                 <li><a href="login.aspx">Login</a></li>
             </asp:PlaceHolder>
             <asp:PlaceHolder ID="plhPrivate" runat="server">
-                <li><a href="departments.aspx">Departments</a></li>
+                <li><a href="bibleMenu.aspx">Bible</a></li>
                 <li><a href="courses.aspx">Courses</a></li>
                 <li><a href="students.aspx">Students</a></li>
             </asp:PlaceHolder>
