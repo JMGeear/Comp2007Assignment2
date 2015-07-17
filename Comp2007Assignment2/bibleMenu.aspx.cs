@@ -37,6 +37,20 @@ namespace Comp2007Assignment2
             }
         }
 
+        protected void grdBible_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            //set the new page #
+            grdBible.PageIndex = e.NewPageIndex;
+            GetBible();
+        }
+
+        protected void ddlPageSize_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //set new page size
+            grdBible.PageSize = Convert.ToInt32(ddlPageSize.SelectedValue);
+            GetBible();
+        }
+
 
     }
 }

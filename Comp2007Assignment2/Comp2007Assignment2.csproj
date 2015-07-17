@@ -68,6 +68,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bibleMenu.aspx" />
+    <Content Include="Content\images\asc.jpg" />
+    <Content Include="Content\images\desc.jpg" />
+    <Content Include="Content\Styles\css.css" />
     <Content Include="login.aspx" />
     <Content Include="passage.aspx" />
     <Content Include="register.aspx" />
@@ -188,7 +191,6 @@
   <ItemGroup>
     <Folder Include="admin\" />
     <Folder Include="App_Data\" />
-    <Folder Include="Content\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<h1>Welcome to The Bible</h1>
+<h1>3-16</h1>
     <div class="well">
         This is a sample application for Entreprise Computing.  We will build this out 
         over the next several classes to include CRUD operations, Entity Framework Database First,
