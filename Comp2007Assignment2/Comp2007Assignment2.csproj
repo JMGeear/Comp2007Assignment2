@@ -67,7 +67,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bibleMenu.aspx" />
+    <Content Include="admin\bibleMenu.aspx" />
+    <Content Include="admin\notes.aspx" />
     <Content Include="Content\images\asc.jpg" />
     <Content Include="Content\images\desc.jpg" />
     <Content Include="Content\Styles\css.css" />
@@ -108,12 +109,19 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="bibleMenu.aspx.cs">
+    <Compile Include="admin\bibleMenu.aspx.cs">
       <DependentUpon>bibleMenu.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="bibleMenu.aspx.designer.cs">
+    <Compile Include="admin\bibleMenu.aspx.designer.cs">
       <DependentUpon>bibleMenu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\notes.aspx.cs">
+      <DependentUpon>notes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\notes.aspx.designer.cs">
+      <DependentUpon>notes.aspx</DependentUpon>
     </Compile>
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
@@ -189,7 +197,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="admin\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
