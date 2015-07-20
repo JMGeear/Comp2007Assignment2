@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Jeff\Documents\GitHub\Comp2007Assignment2\Comp2007Assignment2\Models\BibleModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Benjamin\Documents\GitHub\Comp2007Assignment2\Comp2007Assignment2\Models\BibleModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

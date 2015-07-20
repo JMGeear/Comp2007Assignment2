@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 //reference our entity framework models
 using Comp2007Assignment2.Models;
 using System.Web.ModelBinding;
+using System.Linq.Dynamic;
 
 namespace Comp2007Assignment2
 {
@@ -18,6 +19,8 @@ namespace Comp2007Assignment2
             //fill the grid
             if (!IsPostBack)
             {
+                Session["sortColumn"] = "Book";
+                Session["sortDirection"] = "ASC";
                 GetBible();
             }
         }
@@ -31,8 +34,10 @@ namespace Comp2007Assignment2
                 var bible = from b in conn.BibleBasicEnglishes
                            select b;
 
+
                 //bind the query result to the gridview
-                grdBible.DataSource = bible.ToList();
+                string sortString = Session["sortColumn"].ToString() + " " + Session["sortDirection"].ToString();
+                grdBible.DataSource = bible.AsQueryable().OrderBy(sortString).ToList();
                 grdBible.DataBind();
             }
         }
@@ -51,6 +56,20 @@ namespace Comp2007Assignment2
             GetBible();
         }
 
+        protected void grdBible_Sorting(object sender, GridViewSortEventArgs e)
+        {
+            Session["sortColumn"] = e.SortExpression;
+
+            if (Session["sortDirection"].ToString() == "ASC")
+            {
+                Session["sortDirection"] = "DESC";
+            }
+            else
+            {
+                Session["sortDirection"] = "ASC";
+            }
+            GetBible();
+        }
 
     }
 }

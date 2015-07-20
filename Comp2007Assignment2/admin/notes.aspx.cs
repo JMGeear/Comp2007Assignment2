@@ -13,5 +13,20 @@ namespace Comp2007Assignment2.admin
         {
 
         }
+
+        protected void grdNotes_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+
+        }
+
+        protected void grdNotes_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+
+        }
+
+        protected void grdNotes_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+        }
     }
 }
