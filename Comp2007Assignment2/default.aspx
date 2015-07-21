@@ -7,4 +7,5 @@
         This is a sample application for Entreprise Computing.  We will build this out 
         over the next several classes to include CRUD operations, Entity Framework Database First,
         ASP.NET Identity for authentication, and error handling.
+        </div>
 </asp:Content>
