@@ -14,6 +14,12 @@ namespace Comp2007Assignment2.admin
 
         }
 
+        protected void getNotes()
+        {
+
+
+        }
+
         protected void grdNotes_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
 
@@ -27,6 +33,13 @@ namespace Comp2007Assignment2.admin
         protected void grdNotes_RowDataBound(object sender, GridViewRowEventArgs e)
         {
 
+        }
+
+        protected void ddlPageSize_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //set new page size
+            grdNotes.PageSize = Convert.ToInt32(ddlPageSize.SelectedValue);
+            getNotes();
         }
     }
 }
