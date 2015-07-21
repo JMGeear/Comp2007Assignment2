@@ -20,6 +20,7 @@
 
         <ul class="nav navbar-nav">
             <asp:PlaceHolder ID="plhPublic" runat="server">
+
                 <li><a href="default.aspx">Home</a></li>
                 <li><a href="register.aspx">Register</a></li>
                 <li><a href="login.aspx">Login</a></li>
