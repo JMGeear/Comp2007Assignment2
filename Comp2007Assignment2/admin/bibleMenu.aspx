@@ -17,7 +17,7 @@
 
         <asp:GridView ID="grdBible" runat="server" CssClass="table table-striped"
             AutoGenerateColumns="false" DataKeyNames="ID" AllowPaging="true" PageSize="3"
-            OnPageIndexChanging="grdBible_PageIndexChanging">
+            OnPageIndexChanging="grdBible_PageIndexChanging" AllowSorting="true" OnSorting="grdBible_Sorting">
             <Columns>
                 <asp:BoundField DataField="Book" HeaderText="Book" />
                 <asp:BoundField DataField="Chapter" HeaderText="Chapter" DataFormatString="{0}" />

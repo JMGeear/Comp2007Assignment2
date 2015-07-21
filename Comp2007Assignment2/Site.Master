@@ -8,10 +8,10 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
     <link href="Content/Styles/css.css" rel="stylesheet" />
     <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css" />
 
 </head>
 <body>
@@ -26,8 +26,8 @@
             </asp:PlaceHolder>
             <asp:PlaceHolder ID="plhPrivate" runat="server">
                 <li><a href="bibleMenu.aspx">Bible</a></li>
-                <li><a href="courses.aspx">Courses</a></li>
-                <li><a href="students.aspx">Students</a></li>
+                <li><a href="blog.aspx">Courses</a></li>
+                <li><a href="notes.aspx">Students</a></li>
             </asp:PlaceHolder>
 
         </ul>
