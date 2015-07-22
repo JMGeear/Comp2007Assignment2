@@ -27,8 +27,8 @@
             </asp:PlaceHolder>
             <asp:PlaceHolder ID="plhPrivate" runat="server">
                 <li><a href="bibleMenu.aspx">Bible</a></li>
-                <li><a href="blog.aspx">Courses</a></li>
-                <li><a href="notes.aspx">Students</a></li>
+                <li><a href="blog.aspx">Blog</a></li>
+                <li><a href="notes.aspx">Notes</a></li>
             </asp:PlaceHolder>
 
         </ul>
