@@ -126,6 +126,7 @@
   <ItemGroup>
     <Content Include="admin\bibleMenu.aspx" />
     <Content Include="admin\notes.aspx" />
+    <Content Include="logout.aspx" />
     <Content Include="Models\bibleModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>bibleModel.edmx</DependentUpon>
@@ -224,9 +225,6 @@
     <Compile Include="logout.aspx.cs">
       <DependentUpon>logout.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="logout.aspx.designer.cs">
-      <DependentUpon>logout.aspx</DependentUpon>
     </Compile>
     <Compile Include="passage.aspx.cs">
       <DependentUpon>passage.aspx</DependentUpon>
