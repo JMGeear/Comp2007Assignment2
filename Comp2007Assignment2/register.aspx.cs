@@ -41,7 +41,7 @@ namespace Comp2007Assignment2
                 authenticationManager.SignIn(new AuthenticationProperties() { }, userIdentity);
                 Response.Redirect("/admin/bibleMenu.aspx");
 
-                using(DefaultConnection db = new DefaultConnection){
+                using(DefaultConnection db = new DefaultConnection()){
 
                     user u = new user();
                     u.fName = txtFName.Text;

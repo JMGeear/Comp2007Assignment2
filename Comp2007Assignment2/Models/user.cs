@@ -19,11 +19,9 @@ namespace Comp2007Assignment2.Models
             this.blogs = new HashSet<blog>();
         }
     
-        public int userID { get; set; }
+        public string userID { get; set; }
         public string fName { get; set; }
         public string lName { get; set; }
-        public string username { get; set; }
-        public string password { get; set; }
     
         public virtual ICollection<blog> blogs { get; set; }
     }

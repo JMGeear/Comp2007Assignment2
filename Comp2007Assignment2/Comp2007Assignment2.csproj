@@ -126,6 +126,16 @@
   <ItemGroup>
     <Content Include="admin\bibleMenu.aspx" />
     <Content Include="admin\notes.aspx" />
+    <Content Include="Models\bibleModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>bibleModel.edmx</DependentUpon>
+      <LastGenOutput>bibleModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\bibleModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>bibleModel.edmx</DependentUpon>
+      <LastGenOutput>bibleModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Content\images\asc.jpg" />
     <Content Include="Content\images\background.jpg" />
     <Content Include="Content\images\desc.jpg" />
@@ -135,22 +145,12 @@
     <Content Include="register.aspx" />
     <Content Include="Site.Master" />
     <Content Include="packages.config" />
-    <EntityDeploy Include="Models\BibleModel.edmx">
+    <EntityDeploy Include="Models\bibleModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BibleModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>bibleModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\BibleModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BibleModel.edmx</DependentUpon>
-      <LastGenOutput>BibleModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\BibleModel.edmx.diagram">
-      <DependentUpon>BibleModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\BibleModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BibleModel.edmx</DependentUpon>
-      <LastGenOutput>BibleModel.cs</LastGenOutput>
+    <Content Include="Models\bibleModel.edmx.diagram">
+      <DependentUpon>bibleModel.edmx</DependentUpon>
     </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -181,6 +181,36 @@
     <Compile Include="admin\notes.aspx.designer.cs">
       <DependentUpon>notes.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\BibleBasicEnglish.cs">
+      <DependentUpon>bibleModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bibleModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>bibleModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bibleModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>bibleModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bibleModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>bibleModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\blog.cs">
+      <DependentUpon>bibleModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\blog_post.cs">
+      <DependentUpon>bibleModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\blog_references.cs">
+      <DependentUpon>bibleModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\blog_title.cs">
+      <DependentUpon>bibleModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -197,21 +227,6 @@
     </Compile>
     <Compile Include="logout.aspx.designer.cs">
       <DependentUpon>logout.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BibleModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BibleModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BibleModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BibleModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BibleModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BibleModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="passage.aspx.cs">
       <DependentUpon>passage.aspx</DependentUpon>
@@ -243,6 +258,9 @@
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="Models\user.cs">
+      <DependentUpon>bibleModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -22,7 +22,7 @@ namespace Comp2007Assignment2.Models
         }
     
         public int blogID { get; set; }
-        public Nullable<int> userID { get; set; }
+        public string userID { get; set; }
     
         public virtual user user { get; set; }
         public virtual ICollection<blog_post> blog_post { get; set; }
