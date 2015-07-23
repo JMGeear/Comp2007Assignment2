@@ -125,7 +125,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="admin\bibleMenu.aspx" />
-    <Content Include="admin\notes.aspx" />
     <Content Include="logout.aspx" />
     <Content Include="Content\images\asc.jpg" />
     <Content Include="Content\images\background.jpg" />
@@ -174,13 +173,6 @@
     </Compile>
     <Compile Include="admin\bibleMenu.aspx.designer.cs">
       <DependentUpon>bibleMenu.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="admin\notes.aspx.cs">
-      <DependentUpon>notes.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="admin\notes.aspx.designer.cs">
-      <DependentUpon>notes.aspx</DependentUpon>
     </Compile>
     <Compile Include="logout.aspx.cs">
       <DependentUpon>logout.aspx</DependentUpon>

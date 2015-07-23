@@ -4,29 +4,26 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:Label ID="lblUserId" runat="server" />
+      <a href="notes.aspx">Add Note</a>
 
-    <h1>Booklist</h1>
-    <div class="well">
-        <div>
-            <label for="ddlPageSize">Records Per Page:</label>
-            <asp:DropDownList ID="ddlPageSize" runat="server" AutoPostBack="true"
-                OnSelectedIndexChanged="ddlPageSize_SelectedIndexChanged">
-                <asp:ListItem Value="15" Text="15" />
-                <asp:ListItem Value="25" Text="25" />
-                <asp:ListItem Value="999999" Text="All" />
-            </asp:DropDownList>
-        </div>
-
-        <asp:GridView ID="grdBible" runat="server" CssClass="table table-striped"
-            AutoGenerateColumns="false" DataKeyNames="ID" AllowPaging="true" PageSize="3"
-            OnPageIndexChanging="grdBible_PageIndexChanging" AllowSorting="true" OnSorting="grdBible_Sorting">
-            <Columns>
-                <asp:BoundField DataField="Book" HeaderText="Book" />
-                <asp:BoundField DataField="Chapter" HeaderText="Chapter" DataFormatString="{0}" />
-                <asp:BoundField DataField="Verse" HeaderText="Verse" DataFormatString="{0}" />
-                <asp:BoundField DataField="VerseText" HeaderText="Verse" />
-            </Columns>
-
-        </asp:GridView>
+    <div>
+        <label for="ddlPageSize">Records Per Page</label>
+        <asp:DropDownList ID="ddlPageSize" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlPageSize_SelectedIndexChanged">
+            <asp:ListItem Value="3" Text="3"></asp:ListItem>
+            <asp:ListItem Value="5" Text="5"></asp:ListItem>
+            <asp:ListItem Value="10" Text="10"></asp:ListItem>
+        </asp:DropDownList>
     </div>
+
+    <asp:GridView ID="grdNotes" runat="server" CssClass="table table-striped table-hover" AutoGenerateColumns="false" OnRowDeleting="grdNotes_RowDeleting"
+        DataKeyNames="blogID" AllowPaging="true" PageSize="3" OnPageIndexChanging="grdNotes_PageIndexChanging"
+        OnRowDataBound="grdNotes_RowDataBound">
+        <Columns>
+            <asp:BoundField DataField="blogID" Visible="false" />
+            <asp:BoundField DataField="bookID" HeaderText="Book" Visible="true"/>
+            <asp:BoundField DataField="chapterID" HeaderText="Chapter" />
+            <asp:BoundField DataField="verseID" HeaderText="Verse" />
+            <asp:BoundField DataField="title" HeaderText="Title" />
+        </Columns>
+    </asp:GridView>
 </asp:Content>
