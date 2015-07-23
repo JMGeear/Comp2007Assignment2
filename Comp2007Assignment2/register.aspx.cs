@@ -23,8 +23,8 @@ namespace Comp2007Assignment2
             // Default UserStore constructor uses the default connection string named: DefaultConnection
             var userStore = new UserStore<IdentityUser>();
             var manager = new UserManager<IdentityUser>(userStore);
-
-            var user = new IdentityUser() { UserName = txtUsername.Text };
+            
+            var user = new IdentityUser() { UserName = txtUsername.Text};
             IdentityResult result = manager.Create(user, txtPassword.Text);
 
             if (result.Succeeded)

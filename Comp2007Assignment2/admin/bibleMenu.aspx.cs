@@ -22,8 +22,6 @@ namespace Comp2007Assignment2
             var userStore = new UserStore<IdentityUser>();
             var manager = new UserManager<IdentityUser>(userStore);
             var user = User.Identity.GetUserId();
-            
-            
             lblUserId.Text = "User ID: " + user;
 
             //fill the grid
