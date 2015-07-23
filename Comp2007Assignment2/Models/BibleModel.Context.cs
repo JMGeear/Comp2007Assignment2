@@ -16,7 +16,7 @@ namespace Comp2007Assignment2.Models
     public partial class DefaultConnection : DbContext
     {
         public DefaultConnection()
-            : base("name=DefaultConnection")
+            : base("name=DefaultConnectionEF")
         {
         }
     

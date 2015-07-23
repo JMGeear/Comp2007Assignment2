@@ -4,11 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data.Entity.Validation;
 
-
-using Comp2007Assignment2.Models;
-using System.Web.ModelBinding;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin.Security;
 
 namespace Comp2007Assignment2
 {
@@ -21,21 +20,28 @@ namespace Comp2007Assignment2
 
         protected void btnRegister_Click(object sender, EventArgs e)
         {
-            using (DefaultConnection db = new DefaultConnection())
+            // Default UserStore constructor uses the default connection string named: DefaultConnection
+            var userStore = new UserStore<IdentityUser>();
+            var manager = new UserManager<IdentityUser>(userStore);
+
+            var user = new IdentityUser() { UserName = txtUsername.Text };
+            IdentityResult result = manager.Create(user, txtPassword.Text);
+
+            if (result.Succeeded)
             {
+                //lblStatus.Text = string.Format("User {0} was created successfully!", user.UserName);
+                //lblStatus.CssClass = "label label-success";
 
-                    user u = new user();
-
-                    u.fName = txtFName.Text;
-                    u.lName = txtLName.Text;
-                    u.username = txtUsername.Text;
-                    u.password = txtPassword.Text;
-
-                    db.users.Add(u);
-                    db.SaveChanges();
-
-                
-            } 
+                var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
+                var userIdentity = manager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
+                authenticationManager.SignIn(new AuthenticationProperties() { }, userIdentity);
+                Response.Redirect("/admin/bibleMenu.aspx");
+            }
+            else
+            {
+                //lblStatus.Text = result.Errors.FirstOrDefault();
+                //lblStatus.CssClass = "label label-danger";
+            }
         }
 	}
 }

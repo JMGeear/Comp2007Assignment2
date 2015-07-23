@@ -9,6 +9,9 @@ using System.Web.UI.WebControls;
 using Comp2007Assignment2.Models;
 using System.Web.ModelBinding;
 using System.Linq.Dynamic;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin.Security;
 
 namespace Comp2007Assignment2
 {
@@ -16,10 +19,17 @@ namespace Comp2007Assignment2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            var userStore = new UserStore<IdentityUser>();
+            var manager = new UserManager<IdentityUser>(userStore);
+            var user = User.Identity.GetUserId();
+            
+            
+            lblUserId.Text = "User ID: " + user;
+
             //fill the grid
             if (!IsPostBack)
             {
-                Session["sortColumn"] = "Book";
+                Session["sortColumn"] = "bookNum";
                 Session["sortDirection"] = "ASC";
                 GetBible();
             }

@@ -3,6 +3,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1>Login</h1>
+
+    <asp:Label ID="lblStatus" runat="server" />
     <div>
         <label for="txtUsername">Username: </label>
         <asp:TextBox ID="txtUsername" runat="server"></asp:TextBox>

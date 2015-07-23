@@ -11,7 +11,16 @@ namespace Comp2007Assignment2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            plhPrivate.Visible = true;
+            if (HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                plhPublic.Visible = false;
+                plhPrivate.Visible = true;
+            }
+            else
+            {
+                plhPublic.Visible = true;
+                plhPrivate.Visible = false;
+            }
         }
 
 
