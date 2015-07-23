@@ -198,9 +198,6 @@
     <Compile Include="logout.aspx.designer.cs">
       <DependentUpon>logout.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Models\BibleBasicEnglish.cs">
-      <DependentUpon>BibleModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\BibleModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -215,21 +212,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BibleModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\blog.cs">
-      <DependentUpon>BibleModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\blog_post.cs">
-      <DependentUpon>BibleModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\blog_references.cs">
-      <DependentUpon>BibleModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\blog_title.cs">
-      <DependentUpon>BibleModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\user.cs">
-      <DependentUpon>BibleModel.tt</DependentUpon>
     </Compile>
     <Compile Include="passage.aspx.cs">
       <DependentUpon>passage.aspx</DependentUpon>
