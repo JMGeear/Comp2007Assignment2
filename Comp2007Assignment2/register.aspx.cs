@@ -39,14 +39,21 @@ namespace Comp2007Assignment2
                 var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
                 var userIdentity = manager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
                 authenticationManager.SignIn(new AuthenticationProperties() { }, userIdentity);
-                Response.Redirect("/admin/bibleMenu.aspx");
+                
 
                 using(DefaultConnection db = new DefaultConnection()){
 
                     user u = new user();
+                    u.userID = user.Id;
                     u.fName = txtFName.Text;
+                    u.lName = txtLName.Text;
+
+                    db.users.Add(u);
+                    db.SaveChanges();
 
                 }
+                
+                Response.Redirect("/admin/bibleMenu.aspx");
             }
             else
             {

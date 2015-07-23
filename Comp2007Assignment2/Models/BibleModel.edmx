@@ -133,7 +133,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="DefaultConnection" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="BibleModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="BibleBasicEnglish">
           <Key>
             <PropertyRef Name="ID" />
@@ -242,7 +242,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="BibleEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="DefaultConnection" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="BibleBasicEnglishes" EntityType="Self.BibleBasicEnglish" />
           <EntitySet Name="blogs" EntityType="Self.blog" />
           <EntitySet Name="blog_post" EntityType="Self.blog_post" />
@@ -271,9 +271,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="BibleModelStoreContainer" CdmEntityContainer="BibleEntities">
+        <EntityContainerMapping StorageEntityContainer="BibleModelStoreContainer" CdmEntityContainer="DefaultConnection">
           <EntitySetMapping Name="BibleBasicEnglishes">
-            <EntityTypeMapping TypeName="DefaultConnection.BibleBasicEnglish">
+            <EntityTypeMapping TypeName="BibleModel.BibleBasicEnglish">
               <MappingFragment StoreEntitySet="BibleBasicEnglish">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Book" ColumnName="Book" />
@@ -285,7 +285,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="blogs">
-            <EntityTypeMapping TypeName="DefaultConnection.blog">
+            <EntityTypeMapping TypeName="BibleModel.blog">
               <MappingFragment StoreEntitySet="blog">
                 <ScalarProperty Name="blogID" ColumnName="blogID" />
                 <ScalarProperty Name="userID" ColumnName="userID" />
@@ -293,7 +293,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="blog_post">
-            <EntityTypeMapping TypeName="DefaultConnection.blog_post">
+            <EntityTypeMapping TypeName="BibleModel.blog_post">
               <MappingFragment StoreEntitySet="blog_post">
                 <ScalarProperty Name="postID" ColumnName="postID" />
                 <ScalarProperty Name="blogID" ColumnName="blogID" />
@@ -302,7 +302,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="blog_references">
-            <EntityTypeMapping TypeName="DefaultConnection.blog_references">
+            <EntityTypeMapping TypeName="BibleModel.blog_references">
               <MappingFragment StoreEntitySet="blog_references">
                 <ScalarProperty Name="referenceID" ColumnName="referenceID" />
                 <ScalarProperty Name="blogID" ColumnName="blogID" />
@@ -313,7 +313,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="blog_title">
-            <EntityTypeMapping TypeName="DefaultConnection.blog_title">
+            <EntityTypeMapping TypeName="BibleModel.blog_title">
               <MappingFragment StoreEntitySet="blog_title">
                 <ScalarProperty Name="titleID" ColumnName="titleID" />
                 <ScalarProperty Name="blogID" ColumnName="blogID" />
@@ -322,7 +322,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="users">
-            <EntityTypeMapping TypeName="DefaultConnection.user">
+            <EntityTypeMapping TypeName="BibleModel.user">
               <MappingFragment StoreEntitySet="users">
                 <ScalarProperty Name="userID" ColumnName="userID" />
                 <ScalarProperty Name="fName" ColumnName="fName" />

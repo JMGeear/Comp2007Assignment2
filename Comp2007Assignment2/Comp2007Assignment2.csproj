@@ -127,6 +127,11 @@
     <Content Include="admin\bibleMenu.aspx" />
     <Content Include="admin\notes.aspx" />
     <Content Include="logout.aspx" />
+    <Content Include="Content\images\asc.jpg" />
+    <Content Include="Content\images\background.jpg" />
+    <Content Include="Content\images\desc.jpg" />
+    <Content Include="Content\Styles\css.css" />
+    <Content Include="login.aspx" />
     <Content Include="Models\bibleModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>bibleModel.edmx</DependentUpon>
@@ -137,11 +142,6 @@
       <DependentUpon>bibleModel.edmx</DependentUpon>
       <LastGenOutput>bibleModel.cs</LastGenOutput>
     </Content>
-    <Content Include="Content\images\asc.jpg" />
-    <Content Include="Content\images\background.jpg" />
-    <Content Include="Content\images\desc.jpg" />
-    <Content Include="Content\Styles\css.css" />
-    <Content Include="login.aspx" />
     <Content Include="passage.aspx" />
     <Content Include="register.aspx" />
     <Content Include="Site.Master" />
@@ -189,6 +189,16 @@
     <Compile Include="logout.aspx.designer.cs">
       <DependentUpon>logout.aspx</DependentUpon>
     </Compile>
+    <Compile Include="default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="Models\BibleBasicEnglish.cs">
       <DependentUpon>bibleModel.tt</DependentUpon>
     </Compile>
@@ -219,15 +229,8 @@
     <Compile Include="Models\blog_title.cs">
       <DependentUpon>bibleModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="default.aspx.cs">
-      <DependentUpon>default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="default.aspx.designer.cs">
-      <DependentUpon>default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
+    <Compile Include="Models\user.cs">
+      <DependentUpon>bibleModel.tt</DependentUpon>
     </Compile>
     <Compile Include="passage.aspx.cs">
       <DependentUpon>passage.aspx</DependentUpon>
@@ -259,9 +262,6 @@
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
-    <Compile Include="Models\user.cs">
-      <DependentUpon>bibleModel.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

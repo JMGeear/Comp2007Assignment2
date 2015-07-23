@@ -19,10 +19,20 @@ namespace Comp2007Assignment2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
+    
             var userStore = new UserStore<IdentityUser>();
             var manager = new UserManager<IdentityUser>(userStore);
-            var user = User.Identity.GetUserId();
-            lblUserId.Text = "User ID: " + user;
+            var userID = User.Identity.GetUserId();
+
+            using (DefaultConnection db = new DefaultConnection())
+            {
+                user id = (from objs in db.users
+                           where objs.userID == userID
+                           select objs).FirstOrDefault();
+
+                lblUserId.Text = "Welcome " + id.fName;
+            }
 
             //fill the grid
             if (!IsPostBack)
