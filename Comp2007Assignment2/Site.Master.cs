@@ -11,7 +11,7 @@ namespace Comp2007Assignment2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            plhPrivate.Visible = true;
         }
 
 
