@@ -182,6 +182,13 @@
     <Compile Include="admin\notes.aspx.designer.cs">
       <DependentUpon>notes.aspx</DependentUpon>
     </Compile>
+    <Compile Include="logout.aspx.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="logout.aspx.designer.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Models\BibleBasicEnglish.cs">
       <DependentUpon>bibleModel.tt</DependentUpon>
     </Compile>
@@ -221,10 +228,6 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="logout.aspx.cs">
-      <DependentUpon>logout.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="passage.aspx.cs">
       <DependentUpon>passage.aspx</DependentUpon>
