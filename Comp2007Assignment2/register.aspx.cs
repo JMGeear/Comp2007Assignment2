@@ -9,6 +9,10 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 
+using Comp2007Assignment2.Models;
+using System.Web.ModelBinding;
+using System.Linq.Dynamic;
+
 namespace Comp2007Assignment2
 {
 	public partial class register : System.Web.UI.Page
@@ -36,6 +40,13 @@ namespace Comp2007Assignment2
                 var userIdentity = manager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
                 authenticationManager.SignIn(new AuthenticationProperties() { }, userIdentity);
                 Response.Redirect("/admin/bibleMenu.aspx");
+
+                using(DefaultConnection db = new DefaultConnection){
+
+                    user u = new user();
+                    u.fName = txtFName.Text;
+
+                }
             }
             else
             {
