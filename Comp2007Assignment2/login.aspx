@@ -5,17 +5,17 @@
     <h1>Login</h1>
 
     <asp:Label ID="lblStatus" runat="server" />
-    <div>
+    <div class="form-group">
         <label for="txtUsername">Username: </label>
         <asp:TextBox ID="txtUsername" runat="server"></asp:TextBox>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Username Required" ControlToValidate="txtUsername" CssClass="label label-danger"></asp:RequiredFieldValidator>
     </div>
-    <div>
+    <div class="form-group">
         <label for="txtPassword">Password: </label>
         <asp:TextBox ID="txtPassword" runat="server"></asp:TextBox>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Password Required" ControlToValidate="txtPassword" CssClass="label label-danger"></asp:RequiredFieldValidator>
     </div>
-    <div>
+    <div class="col-sm-2 col-sm-offset-2>
         <asp:Button ID="btnLogin" runat="server" Text="Register" OnClick="btnLogin_Click" />
     </div>
 </asp:Content>
