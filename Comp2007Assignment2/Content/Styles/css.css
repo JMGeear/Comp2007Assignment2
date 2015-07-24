@@ -27,4 +27,22 @@ h1 {
 .form-group {
     color: black;
 }
+
+form {
+    margin-bottom: 100px; /* ADD THIS */
+    min-height: 88%;
+}
+
+.footer {
+    background-color: #182547;
+    background-image: url("images/bottom.png");
+    background-repeat: repeat-x;
+    border-color: #141824;
+    border-top: 4px solid #141824;
+    border-width: 4px;
+    bottom: 0; /* ADD THIS */
+    color: white;
+    position: fixed; /* ADD THIS */
+    text-align: center;
+    width: 100%;
 }
