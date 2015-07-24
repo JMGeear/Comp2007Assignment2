@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.SqlClient;
 
 using Comp2007Assignment2.Models;
 using System.Web.ModelBinding;
@@ -27,6 +29,8 @@ namespace Comp2007Assignment2
                 GetBible();
             }
         }
+
+
         protected void GetBible()
         {
 
