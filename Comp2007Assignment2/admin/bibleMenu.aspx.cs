@@ -9,6 +9,7 @@ using System.Web.UI.WebControls;
 using Comp2007Assignment2.Models;
 using System.Web.ModelBinding;
 using System.Linq.Dynamic;
+
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
@@ -51,10 +52,12 @@ namespace Comp2007Assignment2
             using(DefaultConnection db = new DefaultConnection()){
 
                 var objE = (from bg in db.blogs
+                            
                             join br in db.blog_references on bg.blogID equals br.blogID
                             join bt in db.blog_title on bg.blogID equals bt.blogID
                             join bp in db.blog_post on bg.blogID equals bp.blogID
-                            select new {bg.blogID, br.bookID, br.chapterID, br.verseID, bt.title, bp.post });
+                            where bg.userID == userID
+                            select new {bg.blogID, br.bookName, br.chapterID, br.verseID, bt.title, bp.post });
 
                 grdNotes.DataSource = objE.ToList();
                 grdNotes.DataBind();

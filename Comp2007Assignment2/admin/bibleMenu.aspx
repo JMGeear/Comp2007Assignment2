@@ -15,15 +15,18 @@
         </asp:DropDownList>
     </div>
 
-    <asp:GridView ID="grdNotes" runat="server" CssClass="table table-striped table-hover" AutoGenerateColumns="false" OnRowDeleting="grdNotes_RowDeleting"
+    <asp:GridView ID="grdNotes" runat="server" CssClass="table table-striped" AutoGenerateColumns="false" OnRowDeleting="grdNotes_RowDeleting"
         DataKeyNames="blogID" AllowPaging="true" PageSize="3" OnPageIndexChanging="grdNotes_PageIndexChanging"
         OnRowDataBound="grdNotes_RowDataBound">
         <Columns>
             <asp:BoundField DataField="blogID" Visible="false" />
-            <asp:BoundField DataField="bookID" HeaderText="Book" Visible="true"/>
+            <asp:BoundField DataField="bookName" HeaderText="Book" Visible="true"/>
             <asp:BoundField DataField="chapterID" HeaderText="Chapter" />
             <asp:BoundField DataField="verseID" HeaderText="Verse" />
             <asp:BoundField DataField="title" HeaderText="Title" />
+             <asp:HyperLinkField HeaderText="Edit" text="Edit" NavigateUrl="note.aspx" DataNavigateUrlFields="blogID" 
+                    DataNavigateUrlFormatString="note.aspx?blogID={0}"/>
+                <asp:CommandField HeaderText="Delete" DeleteText="Delete" ShowDeleteButton="true" />
         </Columns>
     </asp:GridView>
 </asp:Content>

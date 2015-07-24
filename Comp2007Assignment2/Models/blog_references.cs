@@ -16,7 +16,7 @@ namespace Comp2007Assignment2.Models
     {
         public int referenceID { get; set; }
         public int blogID { get; set; }
-        public int bookID { get; set; }
+        public string bookName { get; set; }
         public int chapterID { get; set; }
         public int verseID { get; set; }
     
