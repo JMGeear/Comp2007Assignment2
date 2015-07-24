@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="BibleModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="BibleModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BibleBasicEnglish">
           <Key>
             <PropertyRef Name="ID" />
@@ -21,7 +21,7 @@
             <PropertyRef Name="blogID" />
           </Key>
           <Property Name="blogID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="userID" Type="int" />
+          <Property Name="userID" Type="varchar" MaxLength="200" Nullable="false" />
         </EntityType>
         <EntityType Name="blog_post">
           <Key>
@@ -36,8 +36,8 @@
             <PropertyRef Name="referenceID" />
           </Key>
           <Property Name="referenceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="blogID" Type="int" />
-          <Property Name="bookID" Type="int" Nullable="false" />
+          <Property Name="blogID" Type="int" Nullable="false" />
+          <Property Name="bookName" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="chapterID" Type="int" Nullable="false" />
           <Property Name="verseID" Type="int" Nullable="false" />
         </EntityType>
@@ -46,21 +46,19 @@
             <PropertyRef Name="titleID" />
           </Key>
           <Property Name="titleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="blogID" Type="int" />
-          <Property Name="title" Type="varchar" MaxLength="1" />
+          <Property Name="blogID" Type="int" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="users">
           <Key>
             <PropertyRef Name="userID" />
           </Key>
-          <Property Name="userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="fName" Type="varchar" MaxLength="1" />
-          <Property Name="lName" Type="varchar" MaxLength="1" />
-          <Property Name="username" Type="varchar" MaxLength="1" />
-          <Property Name="password" Type="varchar" MaxLength="1" />
+          <Property Name="userID" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="fName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="lName" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <Association Name="FK__blog__userID__38996AB5">
-          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+        <Association Name="FK__blog__userID__59FA5E80">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
           <End Role="blog" Type="Self.blog" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="users">
@@ -71,7 +69,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__blog_post__blogI__45F365D3">
+        <Association Name="FK__blog_post__blogI__6D0D32F4">
           <End Role="blog" Type="Self.blog" Multiplicity="0..1" />
           <End Role="blog_post" Type="Self.blog_post" Multiplicity="*" />
           <ReferentialConstraint>
@@ -83,8 +81,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__blog_refe__blogI__403A8C7D">
-          <End Role="blog" Type="Self.blog" Multiplicity="0..1" />
+        <Association Name="FK__blog_refe__blogI__6FE99F9F">
+          <End Role="blog" Type="Self.blog" Multiplicity="1" />
           <End Role="blog_references" Type="Self.blog_references" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="blog">
@@ -95,8 +93,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__blog_titl__blogI__4316F928">
-          <End Role="blog" Type="Self.blog" Multiplicity="0..1" />
+        <Association Name="FK__blog_titl__blogI__6754599E">
+          <End Role="blog" Type="Self.blog" Multiplicity="1" />
           <End Role="blog_title" Type="Self.blog_title" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="blog">
@@ -114,24 +112,25 @@
           <EntitySet Name="blog_references" EntityType="Self.blog_references" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="blog_title" EntityType="Self.blog_title" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__blog__userID__38996AB5" Association="Self.FK__blog__userID__38996AB5">
+          <AssociationSet Name="FK__blog__userID__59FA5E80" Association="Self.FK__blog__userID__59FA5E80">
             <End Role="users" EntitySet="users" />
             <End Role="blog" EntitySet="blog" />
           </AssociationSet>
-          <AssociationSet Name="FK__blog_post__blogI__45F365D3" Association="Self.FK__blog_post__blogI__45F365D3">
+          <AssociationSet Name="FK__blog_post__blogI__6D0D32F4" Association="Self.FK__blog_post__blogI__6D0D32F4">
             <End Role="blog" EntitySet="blog" />
             <End Role="blog_post" EntitySet="blog_post" />
           </AssociationSet>
-          <AssociationSet Name="FK__blog_refe__blogI__403A8C7D" Association="Self.FK__blog_refe__blogI__403A8C7D">
+          <AssociationSet Name="FK__blog_refe__blogI__6FE99F9F" Association="Self.FK__blog_refe__blogI__6FE99F9F">
             <End Role="blog" EntitySet="blog" />
             <End Role="blog_references" EntitySet="blog_references" />
           </AssociationSet>
-          <AssociationSet Name="FK__blog_titl__blogI__4316F928" Association="Self.FK__blog_titl__blogI__4316F928">
+          <AssociationSet Name="FK__blog_titl__blogI__6754599E" Association="Self.FK__blog_titl__blogI__6754599E">
             <End Role="blog" EntitySet="blog" />
             <End Role="blog_title" EntitySet="blog_title" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BibleModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -151,11 +150,11 @@
             <PropertyRef Name="blogID" />
           </Key>
           <Property Name="blogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="userID" Type="Int32" />
-          <NavigationProperty Name="user" Relationship="Self.FK__blog__userID__38996AB5" FromRole="blog" ToRole="users" />
-          <NavigationProperty Name="blog_post" Relationship="Self.FK__blog_post__blogI__45F365D3" FromRole="blog" ToRole="blog_post" />
-          <NavigationProperty Name="blog_references" Relationship="Self.FK__blog_refe__blogI__403A8C7D" FromRole="blog" ToRole="blog_references" />
-          <NavigationProperty Name="blog_title" Relationship="Self.FK__blog_titl__blogI__4316F928" FromRole="blog" ToRole="blog_title" />
+          <Property Name="userID" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="user" Relationship="Self.FK__blog__userID__59FA5E80" FromRole="blog" ToRole="users" />
+          <NavigationProperty Name="blog_post" Relationship="Self.FK__blog_post__blogI__6D0D32F4" FromRole="blog" ToRole="blog_post" />
+          <NavigationProperty Name="blog_references" Relationship="Self.FK__blog_refe__blogI__6FE99F9F" FromRole="blog" ToRole="blog_references" />
+          <NavigationProperty Name="blog_title" Relationship="Self.FK__blog_titl__blogI__6754599E" FromRole="blog" ToRole="blog_title" />
         </EntityType>
         <EntityType Name="blog_post">
           <Key>
@@ -164,41 +163,39 @@
           <Property Name="postID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="blogID" Type="Int32" />
           <Property Name="post" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="blog" Relationship="Self.FK__blog_post__blogI__45F365D3" FromRole="blog_post" ToRole="blog" />
+          <NavigationProperty Name="blog" Relationship="Self.FK__blog_post__blogI__6D0D32F4" FromRole="blog_post" ToRole="blog" />
         </EntityType>
         <EntityType Name="blog_references">
           <Key>
             <PropertyRef Name="referenceID" />
           </Key>
           <Property Name="referenceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="blogID" Type="Int32" />
-          <Property Name="bookID" Type="Int32" Nullable="false" />
+          <Property Name="blogID" Type="Int32" Nullable="false" />
+          <Property Name="bookName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="chapterID" Type="Int32" Nullable="false" />
           <Property Name="verseID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="blog" Relationship="Self.FK__blog_refe__blogI__403A8C7D" FromRole="blog_references" ToRole="blog" />
+          <NavigationProperty Name="blog" Relationship="Self.FK__blog_refe__blogI__6FE99F9F" FromRole="blog_references" ToRole="blog" />
         </EntityType>
         <EntityType Name="blog_title">
           <Key>
             <PropertyRef Name="titleID" />
           </Key>
           <Property Name="titleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="blogID" Type="Int32" />
-          <Property Name="title" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="blog" Relationship="Self.FK__blog_titl__blogI__4316F928" FromRole="blog_title" ToRole="blog" />
+          <Property Name="blogID" Type="Int32" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="blog" Relationship="Self.FK__blog_titl__blogI__6754599E" FromRole="blog_title" ToRole="blog" />
         </EntityType>
         <EntityType Name="user">
           <Key>
             <PropertyRef Name="userID" />
           </Key>
-          <Property Name="userID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="fName" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="lName" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="username" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="password" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="blogs" Relationship="Self.FK__blog__userID__38996AB5" FromRole="users" ToRole="blog" />
+          <Property Name="userID" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="lName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="blogs" Relationship="Self.FK__blog__userID__59FA5E80" FromRole="users" ToRole="blog" />
         </EntityType>
-        <Association Name="FK__blog__userID__38996AB5">
-          <End Role="users" Type="Self.user" Multiplicity="0..1" />
+        <Association Name="FK__blog__userID__59FA5E80">
+          <End Role="users" Type="Self.user" Multiplicity="1" />
           <End Role="blog" Type="Self.blog" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="users">
@@ -209,7 +206,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__blog_post__blogI__45F365D3">
+        <Association Name="FK__blog_post__blogI__6D0D32F4">
           <End Role="blog" Type="Self.blog" Multiplicity="0..1" />
           <End Role="blog_post" Type="Self.blog_post" Multiplicity="*" />
           <ReferentialConstraint>
@@ -221,8 +218,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__blog_refe__blogI__403A8C7D">
-          <End Role="blog" Type="Self.blog" Multiplicity="0..1" />
+        <Association Name="FK__blog_refe__blogI__6FE99F9F">
+          <End Role="blog" Type="Self.blog" Multiplicity="1" />
           <End Role="blog_references" Type="Self.blog_references" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="blog">
@@ -233,8 +230,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__blog_titl__blogI__4316F928">
-          <End Role="blog" Type="Self.blog" Multiplicity="0..1" />
+        <Association Name="FK__blog_titl__blogI__6754599E">
+          <End Role="blog" Type="Self.blog" Multiplicity="1" />
           <End Role="blog_title" Type="Self.blog_title" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="blog">
@@ -252,19 +249,19 @@
           <EntitySet Name="blog_references" EntityType="Self.blog_references" />
           <EntitySet Name="blog_title" EntityType="Self.blog_title" />
           <EntitySet Name="users" EntityType="Self.user" />
-          <AssociationSet Name="FK__blog__userID__38996AB5" Association="Self.FK__blog__userID__38996AB5">
+          <AssociationSet Name="FK__blog__userID__59FA5E80" Association="Self.FK__blog__userID__59FA5E80">
             <End Role="users" EntitySet="users" />
             <End Role="blog" EntitySet="blogs" />
           </AssociationSet>
-          <AssociationSet Name="FK__blog_post__blogI__45F365D3" Association="Self.FK__blog_post__blogI__45F365D3">
+          <AssociationSet Name="FK__blog_post__blogI__6D0D32F4" Association="Self.FK__blog_post__blogI__6D0D32F4">
             <End Role="blog" EntitySet="blogs" />
             <End Role="blog_post" EntitySet="blog_post" />
           </AssociationSet>
-          <AssociationSet Name="FK__blog_refe__blogI__403A8C7D" Association="Self.FK__blog_refe__blogI__403A8C7D">
+          <AssociationSet Name="FK__blog_refe__blogI__6FE99F9F" Association="Self.FK__blog_refe__blogI__6FE99F9F">
             <End Role="blog" EntitySet="blogs" />
             <End Role="blog_references" EntitySet="blog_references" />
           </AssociationSet>
-          <AssociationSet Name="FK__blog_titl__blogI__4316F928" Association="Self.FK__blog_titl__blogI__4316F928">
+          <AssociationSet Name="FK__blog_titl__blogI__6754599E" Association="Self.FK__blog_titl__blogI__6754599E">
             <End Role="blog" EntitySet="blogs" />
             <End Role="blog_title" EntitySet="blog_title" />
           </AssociationSet>
@@ -309,7 +306,7 @@
               <MappingFragment StoreEntitySet="blog_references">
                 <ScalarProperty Name="referenceID" ColumnName="referenceID" />
                 <ScalarProperty Name="blogID" ColumnName="blogID" />
-                <ScalarProperty Name="bookID" ColumnName="bookID" />
+                <ScalarProperty Name="bookName" ColumnName="bookName" />
                 <ScalarProperty Name="chapterID" ColumnName="chapterID" />
                 <ScalarProperty Name="verseID" ColumnName="verseID" />
               </MappingFragment>
@@ -330,8 +327,6 @@
                 <ScalarProperty Name="userID" ColumnName="userID" />
                 <ScalarProperty Name="fName" ColumnName="fName" />
                 <ScalarProperty Name="lName" ColumnName="lName" />
-                <ScalarProperty Name="username" ColumnName="username" />
-                <ScalarProperty Name="password" ColumnName="password" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -19,6 +19,8 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -58,11 +60,47 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="HtmlAgilityPack, Version=1.4.9.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
-      <HintPath>..\packages\HtmlAgilityPack.1.4.9\lib\Net45\HtmlAgilityPack.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.2.1.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
     <Reference Include="System.Linq.Dynamic">
       <HintPath>..\packages\System.Linq.Dynamic.1.0.4\lib\net40\System.Linq.Dynamic.dll</HintPath>
     </Reference>
@@ -87,33 +125,32 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="admin\bibleMenu.aspx" />
-    <Content Include="admin\notes.aspx" />
+    <Content Include="logout.aspx" />
     <Content Include="Content\images\asc.jpg" />
     <Content Include="Content\images\background.jpg" />
     <Content Include="Content\images\desc.jpg" />
     <Content Include="Content\Styles\css.css" />
     <Content Include="login.aspx" />
-    <Content Include="note.aspx" />
+    <Content Include="Models\bibleModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>bibleModel.edmx</DependentUpon>
+      <LastGenOutput>bibleModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\bibleModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>bibleModel.edmx</DependentUpon>
+      <LastGenOutput>bibleModel.cs</LastGenOutput>
+    </Content>
     <Content Include="passage.aspx" />
     <Content Include="register.aspx" />
     <Content Include="Site.Master" />
     <Content Include="packages.config" />
-    <EntityDeploy Include="Models\BibleModel.edmx">
+    <EntityDeploy Include="Models\bibleModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BibleModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>bibleModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\BibleModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BibleModel.edmx</DependentUpon>
-      <LastGenOutput>BibleModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\BibleModel.edmx.diagram">
-      <DependentUpon>BibleModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\BibleModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BibleModel.edmx</DependentUpon>
-      <LastGenOutput>BibleModel.cs</LastGenOutput>
+    <Content Include="Models\bibleModel.edmx.diagram">
+      <DependentUpon>bibleModel.edmx</DependentUpon>
     </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -137,12 +174,12 @@
     <Compile Include="admin\bibleMenu.aspx.designer.cs">
       <DependentUpon>bibleMenu.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\notes.aspx.cs">
-      <DependentUpon>notes.aspx</DependentUpon>
+    <Compile Include="logout.aspx.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\notes.aspx.designer.cs">
-      <DependentUpon>notes.aspx</DependentUpon>
+    <Compile Include="logout.aspx.designer.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
     </Compile>
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
@@ -155,44 +192,37 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\BibleBasicEnglish.cs">
-      <DependentUpon>BibleModel.tt</DependentUpon>
+      <DependentUpon>bibleModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\BibleModel.Context.cs">
+    <Compile Include="Models\bibleModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BibleModel.Context.tt</DependentUpon>
+      <DependentUpon>bibleModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\BibleModel.cs">
+    <Compile Include="Models\bibleModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BibleModel.tt</DependentUpon>
+      <DependentUpon>bibleModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\BibleModel.Designer.cs">
+    <Compile Include="Models\bibleModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BibleModel.edmx</DependentUpon>
+      <DependentUpon>bibleModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\blog.cs">
-      <DependentUpon>BibleModel.tt</DependentUpon>
+      <DependentUpon>bibleModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\blog_post.cs">
-      <DependentUpon>BibleModel.tt</DependentUpon>
+      <DependentUpon>bibleModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\blog_references.cs">
-      <DependentUpon>BibleModel.tt</DependentUpon>
+      <DependentUpon>bibleModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\blog_title.cs">
-      <DependentUpon>BibleModel.tt</DependentUpon>
+      <DependentUpon>bibleModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\user.cs">
-      <DependentUpon>BibleModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="note.aspx.cs">
-      <DependentUpon>note.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="note.aspx.designer.cs">
-      <DependentUpon>note.aspx</DependentUpon>
+      <DependentUpon>bibleModel.tt</DependentUpon>
     </Compile>
     <Compile Include="passage.aspx.cs">
       <DependentUpon>passage.aspx</DependentUpon>
@@ -223,6 +253,7 @@
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
+    <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -255,6 +286,13 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

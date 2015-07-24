@@ -15,8 +15,8 @@ namespace Comp2007Assignment2.Models
     public partial class blog_references
     {
         public int referenceID { get; set; }
-        public Nullable<int> blogID { get; set; }
-        public int bookID { get; set; }
+        public int blogID { get; set; }
+        public string bookName { get; set; }
         public int chapterID { get; set; }
         public int verseID { get; set; }
     

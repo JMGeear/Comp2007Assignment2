@@ -15,7 +15,7 @@ namespace Comp2007Assignment2.Models
     public partial class blog_title
     {
         public int titleID { get; set; }
-        public Nullable<int> blogID { get; set; }
+        public int blogID { get; set; }
         public string title { get; set; }
     
         public virtual blog blog { get; set; }
