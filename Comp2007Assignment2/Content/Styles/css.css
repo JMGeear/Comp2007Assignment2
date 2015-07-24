@@ -16,8 +16,15 @@ h1 {
 
 .well {
     color: black;
+
 }
 
-nav{
-    background-color:lightslategray;
+.navbar-default{
+    background-color:burlywood;
+    color: black;
+}
+
+.form-group {
+    color: black;
+}
 }
