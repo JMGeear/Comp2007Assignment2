@@ -145,7 +145,6 @@
     </Content>
     <Content Include="passage.aspx" />
     <Content Include="register.aspx" />
-    <Content Include="search.aspx" />
     <Content Include="Site.Master" />
     <Content Include="packages.config" />
     <EntityDeploy Include="Models\bibleModel.edmx">
@@ -255,13 +254,6 @@
     </Compile>
     <Compile Include="register.aspx.designer.cs">
       <DependentUpon>register.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="search.aspx.cs">
-      <DependentUpon>search.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="search.aspx.designer.cs">
-      <DependentUpon>search.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
