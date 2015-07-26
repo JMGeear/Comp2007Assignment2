@@ -167,18 +167,20 @@ namespace Comp2007Assignment2.admin
             //do insert or update
             using (DefaultConnection db = new DefaultConnection())
             {
-                note objP = new note();
+                blog objP = new blog();
+                Int32 postID = 0;
 
                 if (!String.IsNullOrEmpty(Request.QueryString["postID"]))
                 {
                     Int32 postID = Convert.ToInt32(Request.QueryString["postID"]);
                     objP = (from p in db.blog_post
+                            join t in db.blog_title on p.blogID equals t.blogID
                             where p.postID == postID
                             select p).FirstOrDefault();
                 }
 
                 //populate the course from the input form
-                objP.title = txtTitle.Text;
+                objP.title = titleTxt.Text;
                 objP.post = txtBlog.Text;
 
 

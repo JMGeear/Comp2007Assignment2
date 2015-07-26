@@ -67,22 +67,13 @@ namespace Comp2007Assignment2.admin {
         protected global::System.Web.UI.WebControls.HiddenField hdfDdlVerseSelectIndex;
         
         /// <summary>
-        /// txtTitle control.
+        /// titleTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txtTitle;
-        
-        /// <summary>
-        /// txtTitle control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTitle;
+        protected global::System.Web.UI.WebControls.TextBox titleTxt;
         
         /// <summary>
         /// txtBlog control.

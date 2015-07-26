@@ -27,11 +27,11 @@
         <asp:HiddenField ID="hdfDdlVerseSelectIndex" runat="server" />
     </p>
     <div class="form-group">
-        <asp:Label ID="txtTitle" runat="server" class="control-label col-sm-2">Title:</asp:Label>
-    <asp:TextBox ID="txtTitle" runat="server" required MaxLength="100"></asp:TextBox>
+        <asp:Label for="titleTxt" class="control-label col-sm-2">Title:</asp:Label>
+    <asp:TextBox ID="titleTxt" runat="server" required MaxLength="100"></asp:TextBox>
 </div>
     <div class="form-group">
-        <asp:Label ID="txtBlog" runat="server"class="control-label col-sm-2">Note:</asp:Label>
+        <asp:Label for="txtBlog" class="control-label col-sm-2">Note:</asp:Label>
     <asp:TextBox ID="txtBlog" runat="server" Height="400px" Width="600px"></asp:TextBox>
     </div>
     <div class="col-sm-2 col-sm-offset-2">
