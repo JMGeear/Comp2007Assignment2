@@ -14,7 +14,7 @@
         </div>
         <div class="form-group">
             <label for="txtPassword" class="control-label col-sm-3">Password: </label>
-            <asp:TextBox ID="txtPassword" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Password Required" ControlToValidate="txtPassword" CssClass="label label-danger"></asp:RequiredFieldValidator>
         </div>
         <div class="col-sm-2 col-sm-offset-3">

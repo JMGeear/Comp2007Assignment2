@@ -16,6 +16,11 @@ namespace Comp2007Assignment2.admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
+            if (Session["UserId"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
             if (!IsPostBack)
             {
                 // Bind Book dropdownlist
@@ -37,15 +42,15 @@ namespace Comp2007Assignment2.admin
             using (DefaultConnection db = new DefaultConnection())
             {
                 //List<string> list = RetrieveDataFromXml.GetAllCountry();
-                Int32 ID = Convert.ToInt32(Request.QueryString["ID"]);
+                //Int32 ID = Convert.ToInt32(Request.QueryString["ID"]);
 
-                BibleBasicEnglish objB = (from b in db.BibleBasicEnglishes
-                               where b.ID == ID
-                               select b).FirstOrDefault();
+                var objB = (from b in db.BibleBasicEnglishes
+                              
+                            select b.Book).Distinct();
 
-                ddlBook.DataSource = objB.Book;
+                ddlBook.DataSource = objB.ToList();
                 ddlBook.DataBind();
-                ddlBook.Items.Insert(0, new ListItem("Select Book", "-1"));
+                //ddlBook.SelectedValue = objB.;
             }
         }
 
@@ -133,30 +138,61 @@ namespace Comp2007Assignment2.admin
             //list = RetrieveDataFromXml.GetCityByRegion(strRegion);
             using (DefaultConnection db = new DefaultConnection())
             {
-                Int32 ID = Convert.ToInt32(Request.QueryString["ID"]);
-
-                BibleBasicEnglish objB = (from b in db.BibleBasicEnglishes
-                                          where b.ID == ID
-                                          select b).FirstOrDefault();
+                var Verse = (from v in db.BibleBasicEnglishes
+                            orderby v.Verse
+                            select v);
 
                 ddlVerse.Items.Clear();
-                ddlVerse.DataSource = objB.Verse;
+                ddlVerse.DataSource = Verse;
                 ddlVerse.DataBind();
                 ddlVerse.Items.Insert(0, new ListItem("Select Verse", "-1"));
 
-                // Initialize city dropdownlist selected index
+                // Initialize Verse dropdownlist selected index
                 hdfDdlVerseSelectIndex.Value = "0";
 
-                // Enable city dropdownlist when it has items
-                if (objB.Verse > 0)
-                {
+                //// Enable Verse dropdownlist when it has items
+                //if (Verse > 0)
+                //{
                     ddlVerse.Enabled = true;
-                }
-                else
-                {
-                    ddlVerse.Enabled = false;
-                }
+                //}
+                //else
+                //{
+                //    ddlVerse.Enabled = false;
+                //}
             }
         }
+
+        protected void btnSave_Click(object sender, EventArgs e)
+        {
+            //do insert or update
+            using (DefaultConnection db = new DefaultConnection())
+            {
+                note objP = new note();
+
+                if (!String.IsNullOrEmpty(Request.QueryString["postID"]))
+                {
+                    Int32 postID = Convert.ToInt32(Request.QueryString["postID"]);
+                    objP = (from p in db.blog_post
+                            where p.postID == postID
+                            select p).FirstOrDefault();
+                }
+
+                //populate the course from the input form
+                objP.title = txtTitle.Text;
+                objP.post = txtBlog.Text;
+
+
+                if (String.IsNullOrEmpty(Request.QueryString["postID"]))
+                {
+                    //add
+                    db.blog_post.Add(objP);
+                }
+
+                //save and redirect
+                db.SaveChanges();
+                Response.Redirect("notes.aspx");
+            }
+        }
+        
     }
 }
