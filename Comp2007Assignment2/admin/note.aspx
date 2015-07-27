@@ -35,14 +35,14 @@
     </p>
   
     <div class="form-group">
-        <asp:Label for="titleTxt" class="control-label col-sm-2">Title:</asp:Label>
+        <asp:Label for="titleTxt" class="control-label col-sm-2" cssClass="alert-info">Title:</asp:Label>
     <asp:TextBox ID="titleTxt" runat="server" required MaxLength="100"></asp:TextBox>
 </div>
     <div class="form-group col-sm-offset-2"">
-        <asp:Label for="txtBlog" class="control-label col-sm-2">Note:</asp:Label>
+        <asp:Label for="txtBlog" class="control-label col-sm-2" cssClass="label-primary">Note:</asp:Label>
     <asp:TextBox ID="txtBlog" runat="server" Height="300px" Width="655px" TextMode="MultiLine"></asp:TextBox>
     </div>
-    <div class="col-sm-2 col-sm-offset-2">
+    <div class="col-sm-2">
             <asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click" CssClass="btn btn-primary" />
         </div>
     </div>

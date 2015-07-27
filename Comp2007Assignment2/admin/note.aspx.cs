@@ -17,6 +17,8 @@ namespace Comp2007Assignment2.admin
 {
     public partial class note : System.Web.UI.Page
     {
+        String Book, VerseText;
+        Int32 Chapter, Verse;
         protected void Page_Load(object sender, EventArgs e)
         {
             var userStore = new UserStore<IdentityUser>();
@@ -32,16 +34,13 @@ namespace Comp2007Assignment2.admin
                 
             }
 
-            //if (Session["UserId"] == null)
-            //{
-            //    Response.Redirect("~/Login.aspx");
-            //}
+           
             if (!IsPostBack)
             {
                 // Bind Book dropdownlist
                 BindddlBook();
-                ddlChapter.Enabled = false;
-                ddlVerse.Enabled = false;
+                ddlChapter.Enabled = true;
+                ddlVerse.Enabled = true;
 
                 // Insert one item to dropdownlist top
                 ddlChapter.Items.Insert(0, new ListItem("Select Chapter", "-1"));
@@ -56,16 +55,16 @@ namespace Comp2007Assignment2.admin
         {
             using (DefaultConnection db = new DefaultConnection())
             {
-                //List<string> list = RetrieveDataFromXml.GetAllCountry();
-                //Int32 ID = Convert.ToInt32(Request.QueryString["ID"]);
-
+               
                 var objB = (from b in db.BibleBasicEnglishes
-                            group b by b.Book into d
+                            orderby b.ID
+                            group b by b.Book into d                         
                             select new {Book = d.Key, books = d.ToList()});
 
                 ddlBook.DataSource = objB.ToList();
                 ddlBook.DataBind();
                 ddlBook.SelectedValue = objB.ToString();
+                ddlBook.SelectedValue = Book;
             }
         }
 
@@ -104,28 +103,26 @@ namespace Comp2007Assignment2.admin
             ddlChapter.Items.Clear();
             string strBook = string.Empty;
             strBook = ddlBook.SelectedValue;
-            //List<string> list = null;
+            
 
             // Bind Chapter dropdownlist based on Book value
             if (ddlBook.SelectedIndex != 0)
             {
-                //list = RetrieveDataFromXml.GetRegionByCountry(strCountry);
+                
                 using (DefaultConnection db = new DefaultConnection())
-                {
-                    Int32 Chapter = Convert.ToInt32(Request.QueryString["Chapter"]);
+                {                 
+                    var objC = (from c in db.BibleBasicEnglishes
+                                where c.Chapter == Chapter
+                                select c);
 
-                    var objB = (from b in db.BibleBasicEnglishes
-                                where b.Chapter == Chapter
-                                              select b).FirstOrDefault();
-
-                    //if (objB != null && objB != 0)
-                    //{
+                    if (objC != null )
+                    {
                         ddlChapter.Enabled = true;
+                    }
 
-
-                        ddlChapter.DataSource = objB;
+                        ddlChapter.DataSource = objC;
                     ddlChapter.DataBind();
-                    ddlChapter.SelectedValue = objB.ToString();
+                    ddlChapter.SelectedValue = objC.ToString();
                 }
             }
             else
@@ -150,8 +147,7 @@ namespace Comp2007Assignment2.admin
             string strChapter = string.Empty;
             strChapter = ddlChapter.SelectedValue;
 
-            //List<string> list = null;
-            //list = RetrieveDataFromXml.GetCityByRegion(strRegion);
+            
             using (DefaultConnection db = new DefaultConnection())
             {
                 var Verse = (from v in db.BibleBasicEnglishes
@@ -166,15 +162,15 @@ namespace Comp2007Assignment2.admin
                 // Initialize Verse dropdownlist selected index
                 hdfDdlVerseSelectIndex.Value = "0";
 
-                //// Enable Verse dropdownlist when it has items
-                //if (Verse > 0)
-                //{
+                // Enable Verse dropdownlist when it has items
+                if (ddlVerse.Items.Count > 0)
+                {
                 ddlVerse.Enabled = true;
-                //}
-                //else
-                //{
-                //    ddlVerse.Enabled = false;
-                //}
+                }
+                else
+                {
+                    ddlVerse.Enabled = false;
+                }
             }
         }
 
