@@ -29,6 +29,7 @@
                 <li><a href="/admin/bibleMenu.aspx">Bible</a></li>
                 <li><a href="/admin/blog.aspx">Blog</a></li>
                 <li><a href="/admin/notes.aspx">Notes</a></li>
+                <li><a href="/admin/note.aspx">Note</a></li>
                 <li><a href="/logout.aspx">Log Out</a></li>
             </asp:PlaceHolder>
 

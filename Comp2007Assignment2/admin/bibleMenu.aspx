@@ -4,8 +4,10 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:Label ID="lblUserId" runat="server" />
-      <a href="notes.aspx">Add Note</a>
+   
+       <a href="note.aspx">Add Note</a>
 
+    <div class="well">
     <div>
         <label for="ddlPageSize">Records Per Page</label>
         <asp:DropDownList ID="ddlPageSize" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlPageSize_SelectedIndexChanged">
@@ -29,4 +31,6 @@
                 <asp:CommandField HeaderText="Delete" DeleteText="Delete" ShowDeleteButton="true" />
         </Columns>
     </asp:GridView>
+
+    </div>
 </asp:Content>

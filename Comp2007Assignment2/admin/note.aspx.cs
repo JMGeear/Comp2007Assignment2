@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin.Security;
 
 //reference our entity framework models
 using Comp2007Assignment2.Models;
@@ -16,11 +19,23 @@ namespace Comp2007Assignment2.admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-            if (Session["UserId"] == null)
+            var userStore = new UserStore<IdentityUser>();
+            var manager = new UserManager<IdentityUser>(userStore);
+            var userID = User.Identity.GetUserId();
+
+            using (DefaultConnection db = new DefaultConnection())
             {
-                Response.Redirect("Login.aspx");
+                user id = (from objs in db.users
+                           where objs.userID == userID
+                           select objs).FirstOrDefault();
+
+                
             }
+
+            //if (Session["UserId"] == null)
+            //{
+            //    Response.Redirect("~/Login.aspx");
+            //}
             if (!IsPostBack)
             {
                 // Bind Book dropdownlist
@@ -45,12 +60,12 @@ namespace Comp2007Assignment2.admin
                 //Int32 ID = Convert.ToInt32(Request.QueryString["ID"]);
 
                 var objB = (from b in db.BibleBasicEnglishes
-                              
-                            select b.Book).Distinct();
+                            group b by b.Book into d
+                            select new {Book = d.Key, books = d.ToList()});
 
                 ddlBook.DataSource = objB.ToList();
                 ddlBook.DataBind();
-                //ddlBook.SelectedValue = objB.;
+                ddlBook.SelectedValue = objB.ToString();
             }
         }
 
@@ -82,14 +97,14 @@ namespace Comp2007Assignment2.admin
 
             lblResult.Text = strResult;
         }
-         
+
         protected void ddlBook_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Remove region dropdownlist items
+            // Remove Chapter dropdownlist items
             ddlChapter.Items.Clear();
-            string strCountry = string.Empty;
-            strCountry = ddlBook.SelectedValue;
-            List<string> list = null;
+            string strBook = string.Empty;
+            strBook = ddlBook.SelectedValue;
+            //List<string> list = null;
 
             // Bind Chapter dropdownlist based on Book value
             if (ddlBook.SelectedIndex != 0)
@@ -97,19 +112,20 @@ namespace Comp2007Assignment2.admin
                 //list = RetrieveDataFromXml.GetRegionByCountry(strCountry);
                 using (DefaultConnection db = new DefaultConnection())
                 {
-                    Int32 ID = Convert.ToInt32(Request.QueryString["ID"]);
+                    Int32 Chapter = Convert.ToInt32(Request.QueryString["Chapter"]);
 
-                    BibleBasicEnglish objB = (from b in db.BibleBasicEnglishes
-                                              where b.ID == ID
+                    var objB = (from b in db.BibleBasicEnglishes
+                                where b.Chapter == Chapter
                                               select b).FirstOrDefault();
 
-                    if (objB.Chapter != null && objB.Chapter != 0)
-                    {
+                    //if (objB != null && objB != 0)
+                    //{
                         ddlChapter.Enabled = true;
-                    }
 
-                    ddlChapter.DataSource = objB.Chapter;
+
+                        ddlChapter.DataSource = objB;
                     ddlChapter.DataBind();
+                    ddlChapter.SelectedValue = objB.ToString();
                 }
             }
             else
@@ -139,8 +155,8 @@ namespace Comp2007Assignment2.admin
             using (DefaultConnection db = new DefaultConnection())
             {
                 var Verse = (from v in db.BibleBasicEnglishes
-                            orderby v.Verse
-                            select v);
+                             orderby v.Verse
+                             select v);
 
                 ddlVerse.Items.Clear();
                 ddlVerse.DataSource = Verse;
@@ -153,7 +169,7 @@ namespace Comp2007Assignment2.admin
                 //// Enable Verse dropdownlist when it has items
                 //if (Verse > 0)
                 //{
-                    ddlVerse.Enabled = true;
+                ddlVerse.Enabled = true;
                 //}
                 //else
                 //{
@@ -167,27 +183,28 @@ namespace Comp2007Assignment2.admin
             //do insert or update
             using (DefaultConnection db = new DefaultConnection())
             {
-                blog objP = new blog();
+                //blog objP = new blog();
                 Int32 postID = 0;
 
                 if (!String.IsNullOrEmpty(Request.QueryString["postID"]))
                 {
-                    Int32 postID = Convert.ToInt32(Request.QueryString["postID"]);
-                    objP = (from p in db.blog_post
+                    postID = Convert.ToInt32(Request.QueryString["postID"]);
+
+                    var objP = (from p in db.blog_post
                             join t in db.blog_title on p.blogID equals t.blogID
                             where p.postID == postID
                             select p).FirstOrDefault();
-                }
+                
 
                 //populate the course from the input form
-                objP.title = titleTxt.Text;
+               // objP.title = titleTxt.Text;
                 objP.post = txtBlog.Text;
-
+                }
 
                 if (String.IsNullOrEmpty(Request.QueryString["postID"]))
                 {
                     //add
-                    db.blog_post.Add(objP);
+                    //db.blog_post.Add(objP);
                 }
 
                 //save and redirect
@@ -195,6 +212,6 @@ namespace Comp2007Assignment2.admin
                 Response.Redirect("notes.aspx");
             }
         }
-        
+
     }
 }
