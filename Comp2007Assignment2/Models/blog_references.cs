@@ -19,6 +19,7 @@ namespace Comp2007Assignment2.Models
         public string bookName { get; set; }
         public int chapterID { get; set; }
         public int verseID { get; set; }
+        public string verseText { get; set; }
     
         public virtual blog blog { get; set; }
     }

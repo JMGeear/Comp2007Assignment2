@@ -8,6 +8,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using System.Configuration;
+using System.Data;
 
 //reference our entity framework models
 using Comp2007Assignment2.Models;
@@ -104,7 +105,7 @@ namespace Comp2007Assignment2.admin
             using (DefaultConnection db = new DefaultConnection())
             {
                 var Versetxt = (from v in db.BibleBasicEnglishes
-                                 where v.Book == ddlBook.SelectedValue && v.Chapter.ToString() == ddlChapter.SelectedValue && v.Verse.ToString() == ddlVerse.SelectedValue
+                                where v.Book == ddlBook.SelectedValue && v.Chapter.ToString() == ddlChapter.SelectedValue && v.Verse.ToString() == ddlVerse.SelectedValue
                                 select v.VerseText);
 
                 TextVerse.Text = Versetxt.FirstOrDefault().ToString();
@@ -200,35 +201,94 @@ namespace Comp2007Assignment2.admin
             //do insert or update
             using (DefaultConnection db = new DefaultConnection())
             {
-                //blog objP = new blog();
+
                 Int32 blogID = 0;
+
+                blogID = Convert.ToInt32(Request.QueryString["blogID"]);
 
                 if (!String.IsNullOrEmpty(Request.QueryString["blogID"]))
                 {
-                    blogID = Convert.ToInt32(Request.QueryString["blogID"]);
 
-                    var objP = (from p in db.blogs
-                                join br in db.blog_references on p.blogID equals br.blogID
-                                join bt in db.blog_title on p.blogID equals bt.blogID
-                                join bp in db.blog_post on p.blogID equals bp.blogID
-                                where p.userID == userID
-                                select p).FirstOrDefault();
 
+                    int chapterid = Convert.ToInt32(ddlChapter.SelectedValue);
+                    int verseid = Convert.ToInt32(ddlVerse.SelectedValue);
+
+                    //query for blog result
+                    var objE = (from bg in db.blogs
+                                join br in db.blog_references on bg.blogID equals br.blogID
+                                join bt in db.blog_title on bg.blogID equals bt.blogID
+                                join bp in db.blog_post on bg.blogID equals bp.blogID
+                                where bg.userID == userID && bg.blogID == blogID
+                                select new { bg.blogID, br.bookName, br.chapterID, br.verseID, br.verseText, bt.title, bp.post });
 
                     //populate the course from the input form
-                    //objP.title.ToString() = titleTxt.Text;
-                    //objP.post = txtBlog.Text;
-                }
+                    foreach (var reff in objE)
+                    {
+                        ddlBook.SelectedValue = reff.bookName;
+                        chapterid = reff.chapterID;
+                        verseid = reff.verseID;
+                        TextVerse.Text = reff.verseText;
+                        titleTxt.Text = reff.title;
+                        txtBlog.Text = reff.post;
+                    }
 
-                if (String.IsNullOrEmpty(Request.QueryString["postID"]))
+                }
+                blogID = Convert.ToInt32(Request.QueryString["blogID"]);
+
+                if (String.IsNullOrEmpty(Request.QueryString["blogID"]))
                 {
+
                     //add
-                    //db.blog_post.Add(objP);
+
+
+                    //query for blog result
+                    blog b = (from objs in db.blogs
+                              select objs).FirstOrDefault();
+
+
+
+                    //add blog
+                    b.userID = userID;
+                    db.blogs.Add(b);
+                    db.SaveChanges();
+
+                    var i = (from objs in db.blogs
+                             where objs.userID == userID
+                             orderby objs.blogID descending
+                             select objs.blogID);
+
+
+                    //query for blog post result
+                    blog_post bp = (from objs in db.blog_post
+                                    where odjs.blogID == blogID
+                                    select objs).FirstOrDefault();
+
+                    //query for blog title result
+                    blog_title bt = (from objs in db.blog_title
+                                     where odjs.blogID == blogID
+                                     select objs).FirstOrDefault();
+
+                    //query for blog references result
+                    blog_references br = (from objs in db.blog_references
+                                          where odjs.blogID == blogID
+                                          select objs).FirstOrDefault();
+
+
+                    //add blog post
+                    db.blog_post.Add(bp);
+                    db.SaveChanges();
+                    //add blog title
+                    db.blog_title.Add(bt);
+                    db.SaveChanges();
+                    // add blog references
+                    db.blog_references.Add(br);
+                    db.SaveChanges();
+
                 }
 
                 //save and redirect
                 db.SaveChanges();
-                Response.Redirect("bibleMenu.aspx");
+                Response.Redirect("/admin/notes.aspx");
             }
         }
     }

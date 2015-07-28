@@ -40,6 +40,7 @@
           <Property Name="bookName" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="chapterID" Type="int" Nullable="false" />
           <Property Name="verseID" Type="int" Nullable="false" />
+          <Property Name="verseText" Type="text" />
         </EntityType>
         <EntityType Name="blog_title">
           <Key>
@@ -174,6 +175,7 @@
           <Property Name="bookName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="chapterID" Type="Int32" Nullable="false" />
           <Property Name="verseID" Type="Int32" Nullable="false" />
+          <Property Name="verseText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="blog" Relationship="Self.FK__blog_refe__blogI__6FE99F9F" FromRole="blog_references" ToRole="blog" />
         </EntityType>
         <EntityType Name="blog_title">
@@ -309,6 +311,7 @@
                 <ScalarProperty Name="bookName" ColumnName="bookName" />
                 <ScalarProperty Name="chapterID" ColumnName="chapterID" />
                 <ScalarProperty Name="verseID" ColumnName="verseID" />
+                <ScalarProperty Name="verseText" ColumnName="verseText" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

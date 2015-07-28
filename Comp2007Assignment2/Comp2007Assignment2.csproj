@@ -135,16 +135,6 @@
     <Content Include="Content\images\desc.jpg" />
     <Content Include="Content\Styles\css.css" />
     <Content Include="login.aspx" />
-    <Content Include="Models\bibleModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>bibleModel.edmx</DependentUpon>
-      <LastGenOutput>bibleModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\bibleModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>bibleModel.edmx</DependentUpon>
-      <LastGenOutput>bibleModel.cs</LastGenOutput>
-    </Content>
     <Content Include="passage.aspx" />
     <Content Include="register.aspx" />
     <Content Include="Site.Master" />
@@ -153,8 +143,18 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>bibleModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="Models\bibleModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>bibleModel.edmx</DependentUpon>
+      <LastGenOutput>bibleModel.Context.cs</LastGenOutput>
+    </Content>
     <Content Include="Models\bibleModel.edmx.diagram">
       <DependentUpon>bibleModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\bibleModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>bibleModel.edmx</DependentUpon>
+      <LastGenOutput>bibleModel.cs</LastGenOutput>
     </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
