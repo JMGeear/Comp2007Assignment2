@@ -25,21 +25,17 @@ namespace Comp2007Assignment2.admin
             var manager = new UserManager<IdentityUser>(userStore);
             var userID = User.Identity.GetUserId();
 
-
             using (DefaultConnection db = new DefaultConnection())
             {
                 user id = (from objs in db.users
                            where objs.userID == userID
                            select objs).FirstOrDefault();
-
             }
 
             if (!IsPostBack)
             {
-
                 getNotes();
             }
-
         }
 
         protected void getNotes()
@@ -50,7 +46,6 @@ namespace Comp2007Assignment2.admin
 
             using (DefaultConnection db = new DefaultConnection())
             {
-
                 var objE = (from bg in db.blogs
 
                             join br in db.blog_references on bg.blogID equals br.blogID
@@ -61,10 +56,7 @@ namespace Comp2007Assignment2.admin
 
                 grdNotes.DataSource = objE.ToList();
                 grdNotes.DataBind();
-
-
-
-            }
+            };     
         }
 
         protected void grdNotes_RowDeleting(object sender, GridViewDeleteEventArgs e)
