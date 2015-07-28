@@ -58,6 +58,15 @@ namespace Comp2007Assignment2.admin {
         protected global::System.Web.UI.WebControls.Label lblResult;
         
         /// <summary>
+        /// TextVerse control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextVerse;
+        
+        /// <summary>
         /// hdfDdlVerseSelectIndex control.
         /// </summary>
         /// <remarks>

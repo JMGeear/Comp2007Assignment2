@@ -6,19 +6,19 @@
 <div class="well col-sm-7">
     <div class="form-group">
         &nbsp;&nbsp;&nbsp;Book:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:DropDownList ID="ddlBook" runat="server" AutoPostBack="True" 
-            OnSelectedIndexChanged="ddlBook_SelectedIndexChanged" Width="120px" DataTextField="Book" 
-            DataValueField="Book" onChange="EnableOrDisableButton(true);">
+            OnSelectedIndexChanged="ddlBook_SelectedIndexChanged" Width="200px" DataTextField="Book" 
+            DataValueField="Book" >
         </asp:DropDownList>
         </div>
     <div class="form-group">
         &nbsp; Chapter:&nbsp;<asp:DropDownList ID="ddlChapter" runat="server" AutoPostBack="True"
-            OnSelectedIndexChanged="ddlChapter_SelectedIndexChanged" Width="120px" DataTextField="Chapter" 
-            DataValueField="Chapter" onChange="EnableOrDisableButton(true);">
+            OnSelectedIndexChanged="ddlChapter_SelectedIndexChanged" Width="200px" DataTextField="Chapter" 
+            DataValueField="Chapter" >
         </asp:DropDownList>
        </div>
     <div class="form-group">
         &nbsp;&nbsp; Verse:&nbsp;&nbsp;&nbsp; <asp:DropDownList ID="ddlVerse" runat="server"
-             Width="120px" DataTextField="Verse" DataValueField="Verse" onChange="onChange();">
+            Width="200px" DataTextField="Verse" DataValueField="Verse" AutoPostBack="True">
         </asp:DropDownList>
         </div>
     <div >
@@ -27,6 +27,8 @@
     </div>
     <p>
         <asp:Label ID="lblResult" runat="server"></asp:Label>
+        <asp:TextBox ID="TextVerse" runat="server"></asp:TextBox>
+        
     </p>
     <p>
         &nbsp;</p>

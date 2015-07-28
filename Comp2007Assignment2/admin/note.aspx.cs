@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
+using System.Configuration;
 
 //reference our entity framework models
 using Comp2007Assignment2.Models;
@@ -17,8 +18,8 @@ namespace Comp2007Assignment2.admin
 {
     public partial class note : System.Web.UI.Page
     {
-        String Book, VerseText;
-        Int32 Chapter, Verse;
+        //String VerseText;
+        //Int32 Chapter, Verse;
         protected void Page_Load(object sender, EventArgs e)
         {
             var userStore = new UserStore<IdentityUser>();
@@ -31,18 +32,19 @@ namespace Comp2007Assignment2.admin
                            where objs.userID == userID
                            select objs).FirstOrDefault();
 
-                
             }
 
-           
+
             if (!IsPostBack)
             {
+
                 // Bind Book dropdownlist
                 BindddlBook();
-                ddlChapter.Enabled = true;
-                ddlVerse.Enabled = true;
+                ddlChapter.Enabled = false;
+                ddlVerse.Enabled = false;
 
                 // Insert one item to dropdownlist top
+                ddlBook.Items.Insert(0, new ListItem("Select Book", "-1"));
                 ddlChapter.Items.Insert(0, new ListItem("Select Chapter", "-1"));
                 ddlVerse.Items.Insert(0, new ListItem("Select Verse", "-1"));
 
@@ -53,20 +55,23 @@ namespace Comp2007Assignment2.admin
 
         public void BindddlBook()
         {
+            ddlBook.Items.Clear();
             using (DefaultConnection db = new DefaultConnection())
             {
-               
+
                 var objB = (from b in db.BibleBasicEnglishes
                             orderby b.ID
-                            group b by b.Book into d                         
-                            select new {Book = d.Key, books = d.ToList()});
+                            group b by b.Book into d
+                            select new { Book = d.Key, books = d.ToList() });
 
                 ddlBook.DataSource = objB.ToList();
                 ddlBook.DataBind();
-                ddlBook.SelectedValue = objB.ToString();
-                ddlBook.SelectedValue = Book;
+
             }
+
+
         }
+
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
@@ -83,15 +88,27 @@ namespace Comp2007Assignment2.admin
             {
                 strResult = "Please select a Chapter";
             }
-            else if (hdfDdlVerseSelectIndex.Value == "0" && strResult == string.Empty)
+            else if (ddlVerse.SelectedIndex == 0 && strResult == string.Empty)
             {
-                strResult = "Please select a Verse.";
+                strResult = "Please select a Verse";
             }
             else
             {
+
                 strResult = "You selected Book: " + ddlBook.SelectedValue
                     + " ; Chapter: " + ddlChapter.SelectedValue
-                    + " ; Verse: " + ddlVerse.Items[iVerseSelected].Value;
+                    + " ; Verse: " + ddlVerse.SelectedValue;
+
+            }
+
+            using (DefaultConnection db = new DefaultConnection())
+            {
+                var Versetxt = (from v in db.BibleBasicEnglishes
+                                where v.Book == ddlBook.SelectedValue && v.Chapter.ToString() == ddlChapter.SelectedValue && v.Verse.ToString() == ddlVerse.SelectedValue
+                                group v by v.VerseText into d
+                                select new { Verse = d.Key, verses = d.ToList() });
+                TextVerse.Text = Versetxt.ToString();
+
             }
 
             lblResult.Text = strResult;
@@ -101,39 +118,38 @@ namespace Comp2007Assignment2.admin
         {
             // Remove Chapter dropdownlist items
             ddlChapter.Items.Clear();
-            string strBook = string.Empty;
-            strBook = ddlBook.SelectedValue;
-            
+
+
 
             // Bind Chapter dropdownlist based on Book value
-            if (ddlBook.SelectedIndex != 0)
+            if (ddlBook.SelectedValue == "-1")
             {
-                
-                using (DefaultConnection db = new DefaultConnection())
-                {                 
-                    var objC = (from c in db.BibleBasicEnglishes
-                                where c.Chapter == Chapter
-                                select c);
 
-                    if (objC != null )
-                    {
-                        ddlChapter.Enabled = true;
-                    }
 
-                        ddlChapter.DataSource = objC;
-                    ddlChapter.DataBind();
-                    ddlChapter.SelectedValue = objC.ToString();
-                }
             }
             else
             {
-                ddlChapter.Enabled = false;
+                ddlChapter.Enabled = true;
+
+                using (DefaultConnection db = new DefaultConnection())
+                {
+                    var objC = (from c in db.BibleBasicEnglishes
+                                where c.Book == ddlBook.SelectedValue
+                                group c by c.Chapter into d
+                                select new { Chapter = d.Key, chapters = d.ToList() });
+
+                    ddlChapter.DataSource = objC.ToList();
+                    ddlChapter.DataBind();
+
+                }
+
+
             }
 
             ddlChapter.Items.Insert(0, new ListItem("Select Chapter", "-1"));
 
             // Clear Verse dropdownlist
-            ddlVerse.Enabled = false;
+            ddlVerse.Enabled = true;
             ddlVerse.Items.Clear();
             ddlVerse.Items.Insert(0, new ListItem("Select Verse", "-1"));
 
@@ -144,20 +160,22 @@ namespace Comp2007Assignment2.admin
         protected void ddlChapter_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Bind city dropdownlist based on region value
-            string strChapter = string.Empty;
-            strChapter = ddlChapter.SelectedValue;
+            //string strChapter = string.Empty;
+            //strChapter = ddlChapter.SelectedValue;
 
-            
+
             using (DefaultConnection db = new DefaultConnection())
             {
                 var Verse = (from v in db.BibleBasicEnglishes
-                             orderby v.Verse
-                             select v);
+                             where v.Book == ddlBook.SelectedValue && v.Chapter.ToString() == ddlChapter.SelectedValue
+                             group v by v.Verse into d
+                             select new { Verse = d.Key, verses = d.ToList() });
 
-                ddlVerse.Items.Clear();
-                ddlVerse.DataSource = Verse;
+                //ddlVerse.Items.Clear();
+                ddlVerse.DataSource = Verse.ToList();
                 ddlVerse.DataBind();
                 ddlVerse.Items.Insert(0, new ListItem("Select Verse", "-1"));
+
 
                 // Initialize Verse dropdownlist selected index
                 hdfDdlVerseSelectIndex.Value = "0";
@@ -165,7 +183,7 @@ namespace Comp2007Assignment2.admin
                 // Enable Verse dropdownlist when it has items
                 if (ddlVerse.Items.Count > 0)
                 {
-                ddlVerse.Enabled = true;
+                    ddlVerse.Enabled = true;
                 }
                 else
                 {
@@ -176,25 +194,30 @@ namespace Comp2007Assignment2.admin
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
+            var userStore = new UserStore<IdentityUser>();
+            var manager = new UserManager<IdentityUser>(userStore);
+            var userID = User.Identity.GetUserId();
             //do insert or update
             using (DefaultConnection db = new DefaultConnection())
             {
                 //blog objP = new blog();
-                Int32 postID = 0;
+                Int32 blogID = 0;
 
-                if (!String.IsNullOrEmpty(Request.QueryString["postID"]))
+                if (!String.IsNullOrEmpty(Request.QueryString["blogID"]))
                 {
-                    postID = Convert.ToInt32(Request.QueryString["postID"]);
+                    blogID = Convert.ToInt32(Request.QueryString["blogID"]);
 
-                    var objP = (from p in db.blog_post
-                            join t in db.blog_title on p.blogID equals t.blogID
-                            where p.postID == postID
-                            select p).FirstOrDefault();
-                
+                    var objP = (from p in db.blogs
+                                join br in db.blog_references on p.blogID equals br.blogID
+                                join bt in db.blog_title on p.blogID equals bt.blogID
+                                join bp in db.blog_post on p.blogID equals bp.blogID
+                                where p.userID == userID
+                                select p).FirstOrDefault();
 
-                //populate the course from the input form
-               // objP.title = titleTxt.Text;
-                objP.post = txtBlog.Text;
+
+                    //populate the course from the input form
+                    //objP.title.ToString() = titleTxt.Text;
+                    //objP.post = txtBlog.Text;
                 }
 
                 if (String.IsNullOrEmpty(Request.QueryString["postID"]))
@@ -205,9 +228,9 @@ namespace Comp2007Assignment2.admin
 
                 //save and redirect
                 db.SaveChanges();
-                Response.Redirect("notes.aspx");
+                Response.Redirect("bibleMenu.aspx");
             }
-        }
+        }       
 
     }
 }
