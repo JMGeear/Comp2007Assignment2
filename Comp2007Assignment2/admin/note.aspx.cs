@@ -104,10 +104,10 @@ namespace Comp2007Assignment2.admin
             using (DefaultConnection db = new DefaultConnection())
             {
                 var Versetxt = (from v in db.BibleBasicEnglishes
-                                where v.Book == ddlBook.SelectedValue && v.Chapter.ToString() == ddlChapter.SelectedValue && v.Verse.ToString() == ddlVerse.SelectedValue
-                                group v by v.VerseText into d
-                                select new { Verse = d.Key, verses = d.ToList() });
-                TextVerse.Text = Versetxt.ToString();
+                                 where v.Book == ddlBook.SelectedValue && v.Chapter.ToString() == ddlChapter.SelectedValue && v.Verse.ToString() == ddlVerse.SelectedValue
+                                select v.VerseText);
+
+                TextVerse.Text = Versetxt.FirstOrDefault().ToString();
 
             }
 
@@ -230,7 +230,6 @@ namespace Comp2007Assignment2.admin
                 db.SaveChanges();
                 Response.Redirect("bibleMenu.aspx");
             }
-        }       
-
+        }
     }
 }
