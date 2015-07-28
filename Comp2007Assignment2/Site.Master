@@ -23,6 +23,7 @@
 
                 <li><a href="/default.aspx">Home</a></li>
                 <li><a href="/register.aspx">Register</a></li>
+                <li><a href="/contact.aspx">Register</a></li>
                 <li><a href="/login.aspx">Login</a></li>
             </asp:PlaceHolder>
             <asp:PlaceHolder ID="plhPrivate" runat="server">
