@@ -57,7 +57,7 @@ namespace Comp2007Assignment2
                             join bt in db.blog_title on bg.blogID equals bt.blogID
                             join bp in db.blog_post on bg.blogID equals bp.blogID
                             where bg.userID == userID
-                            select new {bg.blogID, br.bookName, br.chapterID, br.verseID, bt.title, bp.post });
+                            select new {bg.blogID, br.bookName, br.chapterID, br.verseID, br.verseText, bt.title, bp.post });
 
                 grdNotes.DataSource = objE.ToList();
                 grdNotes.DataBind();
