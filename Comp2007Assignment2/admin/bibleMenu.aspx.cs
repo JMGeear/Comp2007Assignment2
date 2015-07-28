@@ -62,6 +62,8 @@ namespace Comp2007Assignment2
                 grdNotes.DataSource = objE.ToList();
                 grdNotes.DataBind();
 
+                
+
             }
         }
 
