@@ -44,7 +44,7 @@
                 </asp:ContentPlaceHolder>
             </div>
         </form>
-        <footer class="alert alert-info">
+        <footer>
             @2015 - Comp2007
         </footer>
     </div>

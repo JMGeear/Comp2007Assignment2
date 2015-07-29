@@ -122,7 +122,7 @@ namespace Comp2007Assignment2
             }
 
 
-            Session["bookNum"] = BookNum;
+            Session["bookNum"] = BookNum=0;
             try
             {
                 using (DefaultConnection db = new DefaultConnection())
