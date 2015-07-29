@@ -86,7 +86,7 @@ namespace Comp2007Assignment2.admin
         protected void grdNotes_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
 
-                Int32 selectedRow = e.RowIndex;
+            Int32 selectedRow = e.RowIndex;
 
             //get the selected StudentID using the grids Data Key collection
             Int32 blogID = Convert.ToInt32(grdNotes.DataKeys[selectedRow].Values["blogID"]);

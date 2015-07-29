@@ -133,6 +133,7 @@
     <Content Include="admin\notes.aspx" />
     <Content Include="App_Readme\Elmah.txt" />
     <Content Include="bible.aspx" />
+    <Content Include="blog.aspx" />
     <Content Include="contact.aspx" />
     <Content Include="Content\Scripts\main.js" />
     <Content Include="error.aspx" />
@@ -205,6 +206,13 @@
     </Compile>
     <Compile Include="bible.aspx.designer.cs">
       <DependentUpon>bible.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="blog.aspx.cs">
+      <DependentUpon>blog.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="blog.aspx.designer.cs">
+      <DependentUpon>blog.aspx</DependentUpon>
     </Compile>
     <Compile Include="contact.aspx.cs">
       <DependentUpon>contact.aspx</DependentUpon>

@@ -317,14 +317,14 @@ namespace Comp2007Assignment2.admin
                     }
                     db.SaveChanges();
                 }
-
-
-                Response.Redirect("/admin/notes.aspx");
-            }
+ }
             catch (Exception ex)
             {
                 Response.Redirect("/errors.aspx");
             }
+
+                Response.Redirect("/admin/notes.aspx");
+           
         }
     }
 }
