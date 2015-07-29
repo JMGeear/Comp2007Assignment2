@@ -128,7 +128,9 @@
     <Content Include="admin\note.aspx" />
     <Content Include="admin\notes.aspx" />
     <Content Include="bible.aspx" />
+    <Content Include="contact.aspx" />
     <Content Include="Content\Scripts\main.js" />
+    <Content Include="error.aspx" />
     <Content Include="logout.aspx" />
     <Content Include="Content\images\asc.jpg" />
     <Content Include="Content\images\background.jpg" />
@@ -198,6 +200,20 @@
     </Compile>
     <Compile Include="bible.aspx.designer.cs">
       <DependentUpon>bible.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="contact.aspx.cs">
+      <DependentUpon>contact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="contact.aspx.designer.cs">
+      <DependentUpon>contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="error.aspx.cs">
+      <DependentUpon>error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="error.aspx.designer.cs">
+      <DependentUpon>error.aspx</DependentUpon>
     </Compile>
     <Compile Include="logout.aspx.cs">
       <DependentUpon>logout.aspx</DependentUpon>
