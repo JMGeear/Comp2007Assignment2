@@ -66,37 +66,43 @@ namespace Comp2007Assignment2.admin
 
             //try
             //{
-                using (DefaultConnection db = new DefaultConnection())
+            using (DefaultConnection db = new DefaultConnection())
+            {
+                int chapterid, verseid;
+
+                if ((Request.QueryString["blogID"]) != null)
                 {
-                    int chapterid, verseid;
+                    var blogID = Convert.ToInt32((Request.QueryString["blogID"]));
 
-                    if ((Request.QueryString["blogID"]) != null)
+                    var objE = (from bg in db.blogs
+                                join br in db.blog_references on bg.blogID equals br.blogID
+                                join bt in db.blog_title on bg.blogID equals bt.blogID
+                                join bp in db.blog_post on bg.blogID equals bp.blogID
+                                where bg.userID == Convert.ToString(userID) && bg.blogID == blogID
+                                select new { bg.blogID, br.bookName, br.chapterID, br.verseID, br.verseText, bt.title, bp.post }).FirstOrDefault();
+                   // objE.ToList();
+                    
+                    if (objE != null)
                     {
-                        var blogID = Convert.ToInt32((Request.QueryString["blogID"]));
+                        
+                        blogID = objE.blogID;
+                        ddlBook.SelectedValue = objE.bookName;
+                        chapterid = objE.chapterID;
+                        verseid = objE.verseID;
+                        TextVerse.Text = objE.verseText;
+                        titleTxt.Text = objE.title;
+                        txtBlog.Text = objE.post;
 
-                        var objE = (from bg in db.blogs
-                                    join br in db.blog_references on bg.blogID equals br.blogID
-                                    join bt in db.blog_title on bg.blogID equals bt.blogID
-                                    join bp in db.blog_post on bg.blogID equals bp.blogID
-                                    where bg.userID == Convert.ToString(userID) && bg.blogID == blogID
-                                    select new { bg.blogID, br.bookName, br.chapterID, br.verseID, br.verseText, bt.title, bp.post });
 
-                        //if (objE != null)
-                        //{
-                        //        blogID = objE.AsQueryable();
-                        //        ddlBook.SelectedValue = reff.bookName;
-                        //        chapterid = reff.chapterID;
-                        //        verseid = reff.verseID;
-                        //        TextVerse.Text = reff.verseText;
-                        //        titleTxt.Text = reff.title;
-                        //        txtBlog.Text = reff.post;
-                        //}
+
+
                     }
                 }
+            }
             //}
             //catch (Exception ex)
             //{
-                //Response.Redirect("/errors.aspx");
+            //Response.Redirect("/errors.aspx");
             //}
         }
 

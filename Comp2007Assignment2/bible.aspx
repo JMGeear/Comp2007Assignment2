@@ -29,5 +29,13 @@
 
     </asp:ListView>
 
+    <asp:GridView ID="grdBible" runat="server" CssClass="table table-striped table-hover" AutoGenerateColumns="false" DataKeyName="ID">
+        <Columns>
+            <asp:BoundField DataField="Book" HeaderText="Book" />
+            <asp:BoundField DataField="Chapter" HeaderText="Chapter #:" />
+            <asp:BoundField DataField="Verse" HeaderText="Verse #:" />
+            <asp:BoundField DataField="VerseText" HeaderText="Verse" />
+        </Columns>
+    </asp:GridView>
 
 </asp:Content>

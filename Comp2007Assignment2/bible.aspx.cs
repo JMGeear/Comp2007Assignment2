@@ -17,11 +17,11 @@ namespace Comp2007Assignment2
         protected void Page_Load(object sender, EventArgs e)
         {
 
-
             if (!IsPostBack)
             {
 
                 Session["bookNum"] = 1;
+                int bookNum = 1;
                 btnPreviousBook.Visible = false;
 
 
@@ -32,6 +32,8 @@ namespace Comp2007Assignment2
                 // Insert one item to dropdownlist top
                 ddlBook.Items.Insert(0, new ListItem("Select Book", "-1"));
                 ddlChapter.Items.Insert(0, new ListItem("Select Chapter", "-1"));
+
+                getBible(bookNum);
             }
         }
 
@@ -169,6 +171,8 @@ namespace Comp2007Assignment2
                                     select b).FirstOrDefault();
 
                         lblCurrentBook.Text = book.Book;
+
+                        getBible(bookNum);
                     }
                 }
                 catch (Exception ex)
@@ -188,6 +192,7 @@ namespace Comp2007Assignment2
                                     select b).FirstOrDefault();
 
                         lblCurrentBook.Text = book.Book;
+                        getBible(bookNum);
 
                     }
                 }
@@ -256,7 +261,21 @@ namespace Comp2007Assignment2
 
         }
 
+        public void getBible(int bookNum)
+        {
+            int bN = bookNum; 
+            using (DefaultConnection db = new DefaultConnection())
+            {
+                var objE = (from b in db.BibleBasicEnglishes
+                            where b.bookNum == bN 
+                            select b).ToList();
+                
+                grdBible.DataBind();
 
+            }
+
+
+        }
 
 
 
