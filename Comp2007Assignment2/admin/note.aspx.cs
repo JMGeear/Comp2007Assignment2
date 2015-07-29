@@ -83,16 +83,13 @@ namespace Comp2007Assignment2.admin
 
                         if (objE != null)
                         {
-                            foreach (var reff in objE)
-                            {
-                                blogID = reff.blogID;
+                                blogID = objE.AsQueryable();
                                 ddlBook.SelectedValue = reff.bookName;
                                 chapterid = reff.chapterID;
                                 verseid = reff.verseID;
                                 TextVerse.Text = reff.verseText;
                                 titleTxt.Text = reff.title;
                                 txtBlog.Text = reff.post;
-                            }
                         }
                     }
                 }
