@@ -38,6 +38,10 @@ form {
     min-height: 88%;
 }
 
+html, body {
+  height: 100%;
+}
+
 .footer {
     background-color: #182547;
     background-image: url("images/bottom.png");
@@ -47,7 +51,13 @@ form {
     border-width: 4px;
     bottom: 0; /* ADD THIS */
     color: white;
-    position: fixed; /* ADD THIS */
+    position: absolute; /* ADD THIS */
     text-align: center;
     width: 100%;
+}
+
+.container {
+   height:100%;
+   min-height:100%;
+   position:relative;
 }

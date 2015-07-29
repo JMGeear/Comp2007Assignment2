@@ -3,16 +3,10 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1>Contact Us</h1>
-<div class="col-lg-12">
+
+    
     <div class="row">
-        <div class="col-md-6">
-        </div>
-        
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-        </div>
-        <div class="col-md-6">
+               <div class="col-md-6">
             <address>
                 Thirteen Clapperton Street<br />
                 Barrie, ON L4M 3E4<br />
@@ -21,7 +15,7 @@
             </address>
 
             <address>
-                <strong>Support/Issues/Questions?:</strong>   <a href="mailto:CustomerSupport@316.com">CustomerSupport@virtuoso.com</a><br />
+                <strong>Support/Issues/Questions?:</strong>   <a href="mailto:CustomerSupport@316.com">CustomerSupport@316.com</a><br />
             </address>
         </div>
     </div>

@@ -15,37 +15,39 @@
 
 </head>
 <body>
-    <nav class="nav navbar-default">
-        <a href="default.aspx" class="navbar-brand">The Bible</a>
+    <div id="container">
+        <nav class="nav navbar-default">
+            <a href="../default.aspx" class="navbar-brand">The Bible</a>
 
-        <ul class="nav navbar-nav">
-            <asp:PlaceHolder ID="plhPublic" runat="server">
-                <li><a href="/default.aspx">Home</a></li>
-                <li><a href="/bible.aspx">Read Bible</a></li>
-                <li><a href="/register.aspx">Register</a></li>
-                <li><a href="/contact.aspx">Register</a></li>
-                <li><a href="/login.aspx">Login</a></li>
-            </asp:PlaceHolder>
-            <asp:PlaceHolder ID="plhPrivate" runat="server">
-                <li><a href="/admin/bibleMenu.aspx">Menu</a></li>
-                <li><a href="bible.aspx">Read Bible</a></li>
-                <li><a href="/admin/blog.aspx">Blog</a></li>
-                <li><a href="/admin/notes.aspx">Notes</a></li>
-                <li><a href="/logout.aspx">Log Out</a></li>
-            </asp:PlaceHolder>
+            <ul class="nav navbar-nav">
+                <asp:PlaceHolder ID="plhPublic" runat="server">
+                    <li><a href="/default.aspx">Home</a></li>
+                    <li><a href="/bible.aspx">Read Bible</a></li>
+                    <li><a href="/register.aspx">Register</a></li>
+                    <li><a href="/contact.aspx">Contact Us</a></li>
+                    <li><a href="/login.aspx">Login</a></li>
+                </asp:PlaceHolder>
+                <asp:PlaceHolder ID="plhPrivate" runat="server">
+                    <li><a href="/admin/bibleMenu.aspx">Menu</a></li>
+                    <li><a href="bible.aspx">Read Bible</a></li>
+                    <li><a href="/admin/blog.aspx">Blog</a></li>
+                    <li><a href="/admin/notes.aspx">Notes</a></li>
+                    <li><a href="/logout.aspx">Log Out</a></li>
+                </asp:PlaceHolder>
 
-        </ul>
-    </nav>
-    <form id="form1" runat="server" class="form form-horizontal">
-        <div class="container">
-            <asp:ScriptManager ID="asm" runat="server" />
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
-        </div>
-    </form>
-    <footer class="alert alert-info">
-        @2015 - Comp2007
-    </footer>
+            </ul>
+        </nav>
+        <form id="form1" runat="server" class="form form-horizontal">
+            <div class="container">
+                <asp:ScriptManager ID="asm" runat="server" />
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+        </form>
+        <footer class="alert alert-info">
+            @2015 - Comp2007
+        </footer>
+    </div>
     <!-- Latest compiled and minified JavaScript -->
 
     <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
