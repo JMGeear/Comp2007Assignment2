@@ -22,7 +22,7 @@ namespace Comp2007Assignment2
             {
 
                 Session["bookNum"] = 1;
-                btnPrevious.Visible = false;
+                btnPreviousBook.Visible = false;
 
 
                 // Bind Book dropdownlist
@@ -38,16 +38,23 @@ namespace Comp2007Assignment2
         public void BindddlBook()
         {
             ddlBook.Items.Clear();
-            using (DefaultConnection db = new DefaultConnection())
+            try
             {
+                using (DefaultConnection db = new DefaultConnection())
+                {
 
-                var objB = (from b in db.BibleBasicEnglishes
-                            orderby b.ID
-                            group b by b.Book into d
-                            select new { Book = d.Key, books = d.ToList() });
+                    var objB = (from b in db.BibleBasicEnglishes
+                                orderby b.ID
+                                group b by b.Book into d
+                                select new { Book = d.Key, books = d.ToList() });
 
-                ddlBook.DataSource = objB.ToList();
-                ddlBook.DataBind();
+                    ddlBook.DataSource = objB.ToList();
+                    ddlBook.DataBind();
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Redirect("/errors.aspx");
             }
 
 
@@ -70,16 +77,23 @@ namespace Comp2007Assignment2
             {
                 ddlChapter.Enabled = true;
 
-                using (DefaultConnection db = new DefaultConnection())
+                try
                 {
-                    var objC = (from c in db.BibleBasicEnglishes
-                                where c.Book == ddlBook.SelectedValue
-                                group c by c.Chapter into d
-                                select new { Chapter = d.Key, chapters = d.ToList() });
+                    using (DefaultConnection db = new DefaultConnection())
+                    {
+                        var objC = (from c in db.BibleBasicEnglishes
+                                    where c.Book == ddlBook.SelectedValue
+                                    group c by c.Chapter into d
+                                    select new { Chapter = d.Key, chapters = d.ToList() });
 
-                    ddlChapter.DataSource = objC.ToList();
-                    ddlChapter.DataBind();
+                        ddlChapter.DataSource = objC.ToList();
+                        ddlChapter.DataBind();
 
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Response.Redirect("/errors.aspx");
                 }
 
 
@@ -91,39 +105,53 @@ namespace Comp2007Assignment2
         protected void ddlChapter_SelectedIndexChanged(object sender, EventArgs e)
         {
             int BookNum;
-            using (DefaultConnection db = new DefaultConnection())
+            try
             {
-                var bN = (from b in db.BibleBasicEnglishes
-                               where b.Book == ddlBook.SelectedValue
-                               select b).FirstOrDefault();
+                using (DefaultConnection db = new DefaultConnection())
+                {
+                    var bN = (from b in db.BibleBasicEnglishes
+                              where b.Book == ddlBook.SelectedValue
+                              select b).FirstOrDefault();
 
-                 BookNum = Convert.ToInt32(bN.bookNum);
+                    BookNum = Convert.ToInt32(bN.bookNum);
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Redirect("/errors.aspx");
             }
 
 
             Session["bookNum"] = BookNum;
-            using (DefaultConnection db = new DefaultConnection())
+            try
             {
+                using (DefaultConnection db = new DefaultConnection())
+                {
                     var book = (from b in db.BibleBasicEnglishes
                                 where b.bookNum == BookNum
                                 select b).FirstOrDefault();
 
-                    lblCurrentBook.Text = book.Book;                
+                    lblCurrentBook.Text = book.Book;
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Redirect("/errors.aspx");
             }
 
             if (BookNum == 1)
             {
-                btnPrevious.Visible = false;
+                btnPreviousBook.Visible = false;
             }
             else if (BookNum == 66)
             {
-                btnPrevious.Visible = true;
-                btnNext.Visible = false;
+                btnPreviousBook.Visible = true;
+                btnNextBook.Visible = false;
             }
             else
             {
-                btnNext.Visible = true;
-                btnPrevious.Visible = true;
+                btnNextBook.Visible = true;
+                btnPreviousBook.Visible = true;
             }
         }
 
@@ -134,29 +162,43 @@ namespace Comp2007Assignment2
             int bookNum = Convert.ToInt32(Session["bookNum"]);
             if (Convert.ToInt32(Session["bookNum"]) >= 66)
             {
-                btnNext.Visible = false;
-                btnPrevious.Visible = true;
+                btnNextBook.Visible = false;
+                btnPreviousBook.Visible = true;
 
-                using (DefaultConnection db = new DefaultConnection())
+                try
                 {
-                    var book = (from b in db.BibleBasicEnglishes
-                                where b.bookNum == bookNum
-                                select b).FirstOrDefault();
+                    using (DefaultConnection db = new DefaultConnection())
+                    {
+                        var book = (from b in db.BibleBasicEnglishes
+                                    where b.bookNum == bookNum
+                                    select b).FirstOrDefault();
 
-                    lblCurrentBook.Text = book.Book;
+                        lblCurrentBook.Text = book.Book;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Response.Redirect("/errors.aspx");
                 }
             }
             else
             {
-                btnPrevious.Visible = true;
-                using (DefaultConnection db = new DefaultConnection())
+                btnPreviousBook.Visible = true;
+                try
                 {
-                    var book = (from b in db.BibleBasicEnglishes
-                                where b.bookNum == bookNum
-                                select b).FirstOrDefault();
+                    using (DefaultConnection db = new DefaultConnection())
+                    {
+                        var book = (from b in db.BibleBasicEnglishes
+                                    where b.bookNum == bookNum
+                                    select b).FirstOrDefault();
 
-                    lblCurrentBook.Text = book.Book;
-                    
+                        lblCurrentBook.Text = book.Book;
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Response.Redirect("/errors.aspx");
                 }
             }
         }
@@ -168,31 +210,55 @@ namespace Comp2007Assignment2
             
             if (Convert.ToInt32(Session["bookNum"]) == 1)
             {
-                btnPrevious.Visible = false;
-                btnNext.Visible = true;
+                btnPreviousBook.Visible = false;
+                btnNextBook.Visible = true;
 
-                using (DefaultConnection db = new DefaultConnection())
+                try
                 {
-                    var book = (from b in db.BibleBasicEnglishes
-                                where b.bookNum == bookNum
-                                select b).FirstOrDefault();
+                    using (DefaultConnection db = new DefaultConnection())
+                    {
+                        var book = (from b in db.BibleBasicEnglishes
+                                    where b.bookNum == bookNum
+                                    select b).FirstOrDefault();
 
-                    lblCurrentBook.Text = book.Book;
+                        lblCurrentBook.Text = book.Book;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Response.Redirect("/errors.aspx");
                 }
             }
             else
             {
-                btnPrevious.Visible = true;
-                
-                using (DefaultConnection db = new DefaultConnection())
-                {
-                    var book = (from b in db.BibleBasicEnglishes
-                                where b.bookNum == bookNum
-                                select b).FirstOrDefault();
+                btnPreviousBook.Visible = true;
 
-                    lblCurrentBook.Text = book.Book;
+                try
+                {
+                    using (DefaultConnection db = new DefaultConnection())
+                    {
+                        var book = (from b in db.BibleBasicEnglishes
+                                    where b.bookNum == bookNum
+                                    select b).FirstOrDefault();
+
+                        lblCurrentBook.Text = book.Book;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Response.Redirect("/errors.aspx");
                 }
             }
+        }
+
+        protected void btnPreviousChapter_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnNextChapter_Click(object sender, EventArgs e)
+        {
+
         }
 
       

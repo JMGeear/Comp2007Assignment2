@@ -31,13 +31,13 @@ namespace Comp2007Assignment2 {
         protected global::System.Web.UI.WebControls.DropDownList ddlChapter;
         
         /// <summary>
-        /// btnPrevious control.
+        /// btnPreviousBook control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnPrevious;
+        protected global::System.Web.UI.WebControls.Button btnPreviousBook;
         
         /// <summary>
         /// lblCurrentBook control.
@@ -49,13 +49,40 @@ namespace Comp2007Assignment2 {
         protected global::System.Web.UI.WebControls.Label lblCurrentBook;
         
         /// <summary>
-        /// btnNext control.
+        /// btnNextBook control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnNext;
+        protected global::System.Web.UI.WebControls.Button btnNextBook;
+        
+        /// <summary>
+        /// btnPreviousChapter control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnPreviousChapter;
+        
+        /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+        
+        /// <summary>
+        /// btnNextChapter control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnNextChapter;
         
         /// <summary>
         /// lvwBible control.

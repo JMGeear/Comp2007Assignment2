@@ -17,10 +17,14 @@
         </div>
     </div>
 
-    <asp:Button ID="btnPrevious" runat="server" OnClick="btnPrevious_Click" Text="<< Previous <<" />
+    <asp:Button ID="btnPreviousBook" runat="server" OnClick="btnPrevious_Click" Text="<< Previous <<" />
     &nbsp;&nbsp;&nbsp;<asp:Label ID="lblCurrentBook" runat="server"  Text="Genesis"/>&nbsp;&nbsp;&nbsp;
-    <asp:Button ID="btnNext" runat="server" OnClick="btnNext_Click" Text=">> Next >>" />
+    <asp:Button ID="btnNextBook" runat="server" OnClick="btnNext_Click" Text=">> Next >>" />
+    <br />
 
+    <asp:Button ID="btnPreviousChapter" runat="server" OnClick="btnPreviousChapter_Click" Text="<< Previous <<" />
+    &nbsp;&nbsp;&nbsp;<asp:Label ID="Label1" runat="server"  Text="Genesis"/>&nbsp;&nbsp;&nbsp;
+    <asp:Button ID="btnNextChapter" runat="server" OnClick="btnNextChapter_Click" Text=">> Next >>" />
     <asp:ListView ID="lvwBible" runat="server">
 
     </asp:ListView>

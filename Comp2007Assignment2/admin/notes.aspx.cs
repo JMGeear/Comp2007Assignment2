@@ -25,11 +25,18 @@ namespace Comp2007Assignment2.admin
             var manager = new UserManager<IdentityUser>(userStore);
             var userID = User.Identity.GetUserId();
 
-            using (DefaultConnection db = new DefaultConnection())
+            try
             {
-                user id = (from objs in db.users
-                           where objs.userID == userID
-                           select objs).FirstOrDefault();
+                using (DefaultConnection db = new DefaultConnection())
+                {
+                    user id = (from objs in db.users
+                               where objs.userID == userID
+                               select objs).FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Redirect("/errors.aspx");
             }
 
             if (!IsPostBack)
@@ -49,19 +56,26 @@ namespace Comp2007Assignment2.admin
             var manager = new UserManager<IdentityUser>(userStore);
             var userID = User.Identity.GetUserId();
 
-            using (DefaultConnection db = new DefaultConnection())
+            try
             {
-                var objE = (from bg in db.blogs
+                using (DefaultConnection db = new DefaultConnection())
+                {
+                    var objE = (from bg in db.blogs
 
-                            join br in db.blog_references on bg.blogID equals br.blogID
-                            join bt in db.blog_title on bg.blogID equals bt.blogID
-                            join bp in db.blog_post on bg.blogID equals bp.blogID
-                            where bg.userID == userID
-                            select new { bg.blogID, br.bookName, br.chapterID, br.verseID, bt.title, bp.post });
+                                join br in db.blog_references on bg.blogID equals br.blogID
+                                join bt in db.blog_title on bg.blogID equals bt.blogID
+                                join bp in db.blog_post on bg.blogID equals bp.blogID
+                                where bg.userID == userID
+                                select new { bg.blogID, br.bookName, br.chapterID, br.verseID, bt.title, bp.post });
 
-                grdNotes.DataSource = objE.ToList();
-                grdNotes.DataBind();
-            };     
+                    grdNotes.DataSource = objE.ToList();
+                    grdNotes.DataBind();
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Redirect("/errors.aspx");
+            }
         }
 
 
@@ -117,7 +131,7 @@ namespace Comp2007Assignment2.admin
             }
             catch (Exception ex)
             {
-                //Response.Redirect("/errors.aspx");
+                Response.Redirect("/errors.aspx");
             }
 
 
