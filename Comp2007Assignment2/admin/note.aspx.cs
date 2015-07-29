@@ -81,16 +81,16 @@ namespace Comp2007Assignment2.admin
                                     where bg.userID == Convert.ToString(userID) && bg.blogID == blogID
                                     select new { bg.blogID, br.bookName, br.chapterID, br.verseID, br.verseText, bt.title, bp.post });
 
-                        if (objE != null)
-                        {
-                                blogID = objE.AsQueryable();
-                                ddlBook.SelectedValue = reff.bookName;
-                                chapterid = reff.chapterID;
-                                verseid = reff.verseID;
-                                TextVerse.Text = reff.verseText;
-                                titleTxt.Text = reff.title;
-                                txtBlog.Text = reff.post;
-                        }
+                        //if (objE != null)
+                        //{
+                        //        blogID = objE.AsQueryable();
+                        //        ddlBook.SelectedValue = reff.bookName;
+                        //        chapterid = reff.chapterID;
+                        //        verseid = reff.verseID;
+                        //        TextVerse.Text = reff.verseText;
+                        //        titleTxt.Text = reff.title;
+                        //        txtBlog.Text = reff.post;
+                        //}
                     }
                 }
             //}
