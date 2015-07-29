@@ -24,21 +24,28 @@ namespace Comp2007Assignment2
          **/
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            var userStore = new UserStore<IdentityUser>();
-            var userManager = new UserManager<IdentityUser>(userStore);
-            var user = userManager.Find(txtUsername.Text, txtPassword.Text);
-
-            if (user != null)
+            try
             {
-                var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
-                var userIdentity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
+                var userStore = new UserStore<IdentityUser>();
+                var userManager = new UserManager<IdentityUser>(userStore);
+                var user = userManager.Find(txtUsername.Text, txtPassword.Text);
 
-                authenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = false }, userIdentity);
-                Response.Redirect("admin/bibleMenu.aspx");
+                if (user != null)
+                {
+                    var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
+                    var userIdentity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
+
+                    authenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = false }, userIdentity);
+                    Response.Redirect("admin/bibleMenu.aspx");
+                }
+                else
+                {
+                    lblStatus.Text = "Invalid username or password.";
+                }
             }
-            else
+            catch (Exception ex)
             {
-                lblStatus.Text = "Invalid username or password.";
+                Response.Redirect("/errors.aspx");
             }
         }
 

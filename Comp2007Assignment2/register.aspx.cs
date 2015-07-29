@@ -24,41 +24,49 @@ namespace Comp2007Assignment2
 
         protected void btnRegister_Click(object sender, EventArgs e)
         {
-            // Default UserStore constructor uses the default connection string named: DefaultConnection
-            var userStore = new UserStore<IdentityUser>();
-            var manager = new UserManager<IdentityUser>(userStore);
-            
-            var user = new IdentityUser() { UserName = txtUsername.Text};
-            IdentityResult result = manager.Create(user, txtPassword.Text);
-
-            if (result.Succeeded)
+            try
             {
-                //lblStatus.Text = string.Format("User {0} was created successfully!", user.UserName);
-                //lblStatus.CssClass = "label label-success";
+                // Default UserStore constructor uses the default connection string named: DefaultConnection
+                var userStore = new UserStore<IdentityUser>();
+                var manager = new UserManager<IdentityUser>(userStore);
 
-                var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
-                var userIdentity = manager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
-                authenticationManager.SignIn(new AuthenticationProperties() { }, userIdentity);
-                
-                //add user to users db
-                using(DefaultConnection db = new DefaultConnection()){
+                var user = new IdentityUser() { UserName = txtUsername.Text };
+                IdentityResult result = manager.Create(user, txtPassword.Text);
 
-                    user u = new user();
-                    u.userID = user.Id;
-                    u.fName = txtFName.Text;
-                    u.lName = txtLName.Text;
+                if (result.Succeeded)
+                {
+                    //lblStatus.Text = string.Format("User {0} was created successfully!", user.UserName);
+                    //lblStatus.CssClass = "label label-success";
 
-                    db.users.Add(u);
-                    db.SaveChanges();
+                    var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
+                    var userIdentity = manager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
+                    authenticationManager.SignIn(new AuthenticationProperties() { }, userIdentity);
 
+                    //add user to users db
+                    using (DefaultConnection db = new DefaultConnection())
+                    {
+
+                        user u = new user();
+                        u.userID = user.Id;
+                        u.fName = txtFName.Text;
+                        u.lName = txtLName.Text;
+
+                        db.users.Add(u);
+                        db.SaveChanges();
+
+                    }
+                    //redirect to main menu
+                    Response.Redirect("/admin/bibleMenu.aspx");
                 }
-                //redirect to main menu
-                Response.Redirect("/admin/bibleMenu.aspx");
+                else
+                {
+                    //lblStatus.Text = result.Errors.FirstOrDefault();
+                    //lblStatus.CssClass = "label label-danger";
+                }
             }
-            else
+            catch (Exception ex)
             {
-                //lblStatus.Text = result.Errors.FirstOrDefault();
-                //lblStatus.CssClass = "label label-danger";
+                Response.Redirect("/errors.aspx");
             }
         }
 	}

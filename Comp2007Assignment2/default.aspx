@@ -4,8 +4,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <h1>3-16</h1>
     <div class="well">
-        This is a sample application for Entreprise Computing.  We will build this out 
-        over the next several classes to include CRUD operations, Entity Framework Database First,
-        ASP.NET Identity for authentication, and error handling.
+        Welcome to 3-16! This is a Bible study application for Entreprise Computing.  We built this out 
+        to include CRUD operations, Entity Framework Database First, ASP.NET Identity for 
+        authentication, and error handling.
         </div>
 </asp:Content>
