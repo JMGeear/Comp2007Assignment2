@@ -31,7 +31,7 @@ namespace Comp2007Assignment2.admin
             {
                 using (DefaultConnection db = new DefaultConnection())
                 {
-                    user id = (from objs in db.users
+                    bloguser id = (from objs in db.blogusers
                                where objs.userID == userID
                                select objs).FirstOrDefault();
                 }
@@ -287,7 +287,7 @@ namespace Comp2007Assignment2.admin
                     }
 
                     //set blog variable
-                    b.userID = userID;
+                    b.blogID = blogID;
                     //set references variables
                     bref.bookName = ddlBook.SelectedValue;
                     bref.chapterID = Convert.ToInt32(ddlChapter.SelectedValue);

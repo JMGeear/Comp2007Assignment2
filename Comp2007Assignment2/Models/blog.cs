@@ -24,9 +24,9 @@ namespace Comp2007Assignment2.Models
         public int blogID { get; set; }
         public string userID { get; set; }
     
-        public virtual user user { get; set; }
         public virtual ICollection<blog_post> blog_post { get; set; }
         public virtual ICollection<blog_references> blog_references { get; set; }
         public virtual ICollection<blog_title> blog_title { get; set; }
+        public virtual bloguser bloguser { get; set; }
     }
 }

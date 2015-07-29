@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BibleModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BibleModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BibleBasicEnglish">
           <Key>
             <PropertyRef Name="ID" />
@@ -130,8 +130,7 @@
             <End Role="blog_title" EntitySet="blog_title" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BibleModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -152,10 +151,10 @@
           </Key>
           <Property Name="blogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="userID" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="user" Relationship="Self.FK__blog__userID__59FA5E80" FromRole="blog" ToRole="users" />
           <NavigationProperty Name="blog_post" Relationship="Self.FK__blog_post__blogI__6D0D32F4" FromRole="blog" ToRole="blog_post" />
           <NavigationProperty Name="blog_references" Relationship="Self.FK__blog_refe__blogI__6FE99F9F" FromRole="blog" ToRole="blog_references" />
           <NavigationProperty Name="blog_title" Relationship="Self.FK__blog_titl__blogI__6754599E" FromRole="blog" ToRole="blog_title" />
+          <NavigationProperty Name="bloguser" Relationship="BibleModel.FK__blog__userID__59FA5E80" FromRole="blog" ToRole="user" />
         </EntityType>
         <EntityType Name="blog_post">
           <Key>
@@ -187,27 +186,6 @@
           <Property Name="title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="blog" Relationship="Self.FK__blog_titl__blogI__6754599E" FromRole="blog_title" ToRole="blog" />
         </EntityType>
-        <EntityType Name="user">
-          <Key>
-            <PropertyRef Name="userID" />
-          </Key>
-          <Property Name="userID" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="fName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="lName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="blogs" Relationship="Self.FK__blog__userID__59FA5E80" FromRole="users" ToRole="blog" />
-        </EntityType>
-        <Association Name="FK__blog__userID__59FA5E80">
-          <End Role="users" Type="Self.user" Multiplicity="1" />
-          <End Role="blog" Type="Self.blog" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="users">
-              <PropertyRef Name="userID" />
-            </Principal>
-            <Dependent Role="blog">
-              <PropertyRef Name="userID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__blog_post__blogI__6D0D32F4">
           <End Role="blog" Type="Self.blog" Multiplicity="0..1" />
           <End Role="blog_post" Type="Self.blog_post" Multiplicity="*" />
@@ -250,11 +228,6 @@
           <EntitySet Name="blog_post" EntityType="Self.blog_post" />
           <EntitySet Name="blog_references" EntityType="Self.blog_references" />
           <EntitySet Name="blog_title" EntityType="Self.blog_title" />
-          <EntitySet Name="users" EntityType="Self.user" />
-          <AssociationSet Name="FK__blog__userID__59FA5E80" Association="Self.FK__blog__userID__59FA5E80">
-            <End Role="users" EntitySet="users" />
-            <End Role="blog" EntitySet="blogs" />
-          </AssociationSet>
           <AssociationSet Name="FK__blog_post__blogI__6D0D32F4" Association="Self.FK__blog_post__blogI__6D0D32F4">
             <End Role="blog" EntitySet="blogs" />
             <End Role="blog_post" EntitySet="blog_post" />
@@ -267,7 +240,33 @@
             <End Role="blog" EntitySet="blogs" />
             <End Role="blog_title" EntitySet="blog_title" />
           </AssociationSet>
+          <EntitySet Name="blogusers" EntityType="BibleModel.bloguser" />
+          <AssociationSet Name="FK__blog__userID__59FA5E80" Association="BibleModel.FK__blog__userID__59FA5E80">
+            <End Role="user" EntitySet="blogusers" />
+            <End Role="blog" EntitySet="blogs" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="bloguser">
+          <Key>
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="userID" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="fName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="lName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="blogs" Relationship="BibleModel.FK__blog__userID__59FA5E80" FromRole="user" ToRole="blog" />
+        </EntityType>
+        <Association Name="FK__blog__userID__59FA5E80">
+          <End Type="BibleModel.bloguser" Role="user" Multiplicity="1" />
+          <End Type="BibleModel.blog" Role="blog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="blog">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -324,12 +323,12 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="users">
-            <EntityTypeMapping TypeName="BibleModel.user">
+          <EntitySetMapping Name="blogusers">
+            <EntityTypeMapping TypeName="BibleModel.bloguser">
               <MappingFragment StoreEntitySet="users">
-                <ScalarProperty Name="userID" ColumnName="userID" />
-                <ScalarProperty Name="fName" ColumnName="fName" />
                 <ScalarProperty Name="lName" ColumnName="lName" />
+                <ScalarProperty Name="fName" ColumnName="fName" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

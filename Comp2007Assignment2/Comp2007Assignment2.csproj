@@ -266,6 +266,9 @@
     <Compile Include="Models\blog.cs">
       <DependentUpon>bibleModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\bloguser.cs">
+      <DependentUpon>bibleModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\blog_post.cs">
       <DependentUpon>bibleModel.tt</DependentUpon>
     </Compile>
@@ -273,9 +276,6 @@
       <DependentUpon>bibleModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\blog_title.cs">
-      <DependentUpon>bibleModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\user.cs">
       <DependentUpon>bibleModel.tt</DependentUpon>
     </Compile>
     <Compile Include="passage.aspx.cs">

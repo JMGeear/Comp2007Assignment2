@@ -16,7 +16,7 @@ namespace Comp2007Assignment2.Models
     public partial class DefaultConnection : DbContext
     {
         public DefaultConnection()
-            : base("name=DefaultConnectionEF")
+            : base("name=DefaultConnection")
         {
         }
     
@@ -30,6 +30,6 @@ namespace Comp2007Assignment2.Models
         public virtual DbSet<blog_post> blog_post { get; set; }
         public virtual DbSet<blog_references> blog_references { get; set; }
         public virtual DbSet<blog_title> blog_title { get; set; }
-        public virtual DbSet<user> users { get; set; }
+        public virtual DbSet<bloguser> blogusers { get; set; }
     }
 }

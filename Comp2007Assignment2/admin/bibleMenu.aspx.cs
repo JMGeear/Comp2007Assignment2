@@ -28,7 +28,7 @@ namespace Comp2007Assignment2
             //using userID to get user information fname and lname
             using (DefaultConnection db = new DefaultConnection())
             {
-                user id = (from objs in db.users
+                bloguser id = (from objs in db.blogusers
                            where objs.userID == userID
                            select objs).FirstOrDefault();
 

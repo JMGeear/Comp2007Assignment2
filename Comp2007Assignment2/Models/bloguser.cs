@@ -12,9 +12,9 @@ namespace Comp2007Assignment2.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class user
+    public partial class bloguser
     {
-        public user()
+        public bloguser()
         {
             this.blogs = new HashSet<blog>();
         }
