@@ -18,7 +18,7 @@
         <div class="well">
             <ul>
                 <li><a href="/bible.aspx">View Bible</a></li>
-                <li><a href="/default.aspx">Not to sure what this link will be.</a></li>
+                <li><a href="/contact.aspx">Contact Us</a></li>
             </ul>
         </div>
     </div>

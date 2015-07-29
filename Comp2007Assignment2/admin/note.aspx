@@ -27,7 +27,7 @@
     </div>
     <p>
         <asp:Label ID="lblResult" runat="server"></asp:Label>
-        <asp:TextBox ID="TextVerse" runat="server" TextMode="MultiLine" Width="400px"></asp:TextBox>
+        <asp:TextBox ID="TextVerse" runat="server" TextMode="MultiLine" Width="600px"></asp:TextBox>
         
     </p>
     <p>
