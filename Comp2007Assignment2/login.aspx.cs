@@ -19,6 +19,9 @@ namespace Comp2007Assignment2
          
 		}
 
+        /**
+          Login - authenticate entered user credientials.
+         **/
         protected void btnLogin_Click(object sender, EventArgs e)
         {
             var userStore = new UserStore<IdentityUser>();

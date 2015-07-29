@@ -38,6 +38,11 @@ namespace Comp2007Assignment2.admin
             }
         }
 
+
+        /**
+         * This function will get the current users ID based on their login.
+         * It will populate a gridview of all the notes the user has created.
+         **/
         protected void getNotes()
         {
             var userStore = new UserStore<IdentityUser>();
@@ -59,6 +64,11 @@ namespace Comp2007Assignment2.admin
             };     
         }
 
+
+        /**
+         * This method will delete a note by getting the row index and using the blogID
+         * it will remove all instances from all tables.
+         **/
         protected void grdNotes_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             Int32 selectedRow = e.RowIndex;
@@ -114,6 +124,8 @@ namespace Comp2007Assignment2.admin
 
         }
 
+
+
         protected void grdNotes_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
 
@@ -124,6 +136,10 @@ namespace Comp2007Assignment2.admin
 
         }
 
+
+        /**
+         * This function will set the page size. 
+         **/
         protected void ddlPageSize_SelectedIndexChanged(object sender, EventArgs e)
         {
             //set new page size

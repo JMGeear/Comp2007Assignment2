@@ -40,7 +40,7 @@ namespace Comp2007Assignment2
                 var userIdentity = manager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
                 authenticationManager.SignIn(new AuthenticationProperties() { }, userIdentity);
                 
-
+                //add user to users db
                 using(DefaultConnection db = new DefaultConnection()){
 
                     user u = new user();
@@ -52,7 +52,7 @@ namespace Comp2007Assignment2
                     db.SaveChanges();
 
                 }
-                
+                //redirect to main menu
                 Response.Redirect("/admin/bibleMenu.aspx");
             }
             else

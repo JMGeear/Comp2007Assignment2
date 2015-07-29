@@ -11,6 +11,7 @@ namespace Comp2007Assignment2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //sign out user.
             var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
             authenticationManager.SignOut();
             Response.Redirect("/login.aspx");

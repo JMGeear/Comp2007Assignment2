@@ -20,11 +20,12 @@ namespace Comp2007Assignment2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //get userID from asp db
             var userStore = new UserStore<IdentityUser>();
             var manager = new UserManager<IdentityUser>(userStore);
             var userID = User.Identity.GetUserId();
 
-
+            //using userID to get user information fname and lname
             using (DefaultConnection db = new DefaultConnection())
             {
                 user id = (from objs in db.users
