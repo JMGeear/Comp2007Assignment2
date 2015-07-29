@@ -22,7 +22,7 @@ namespace Comp2007Assignment2
             {
 
                 Session["bookNum"] = 1;
-                btnPrevious.Visible = false;
+                btnPreviousBook.Visible = false;
 
 
                 // Bind Book dropdownlist
@@ -113,17 +113,17 @@ namespace Comp2007Assignment2
 
             if (BookNum == 1)
             {
-                btnPrevious.Visible = false;
+                btnPreviousBook.Visible = false;
             }
             else if (BookNum == 66)
             {
-                btnPrevious.Visible = true;
-                btnNext.Visible = false;
+                btnPreviousBook.Visible = true;
+                btnNextBook.Visible = false;
             }
             else
             {
-                btnNext.Visible = true;
-                btnPrevious.Visible = true;
+                btnNextBook.Visible = true;
+                btnPreviousBook.Visible = true;
             }
         }
 
@@ -134,8 +134,8 @@ namespace Comp2007Assignment2
             int bookNum = Convert.ToInt32(Session["bookNum"]);
             if (Convert.ToInt32(Session["bookNum"]) >= 66)
             {
-                btnNext.Visible = false;
-                btnPrevious.Visible = true;
+                btnNextBook.Visible = false;
+                btnPreviousBook.Visible = true;
 
                 using (DefaultConnection db = new DefaultConnection())
                 {
@@ -148,7 +148,7 @@ namespace Comp2007Assignment2
             }
             else
             {
-                btnPrevious.Visible = true;
+                btnPreviousBook.Visible = true;
                 using (DefaultConnection db = new DefaultConnection())
                 {
                     var book = (from b in db.BibleBasicEnglishes
@@ -168,8 +168,8 @@ namespace Comp2007Assignment2
             
             if (Convert.ToInt32(Session["bookNum"]) == 1)
             {
-                btnPrevious.Visible = false;
-                btnNext.Visible = true;
+                btnPreviousBook.Visible = false;
+                btnNextBook.Visible = true;
 
                 using (DefaultConnection db = new DefaultConnection())
                 {
@@ -182,7 +182,7 @@ namespace Comp2007Assignment2
             }
             else
             {
-                btnPrevious.Visible = true;
+                btnPreviousBook.Visible = true;
                 
                 using (DefaultConnection db = new DefaultConnection())
                 {
@@ -193,6 +193,16 @@ namespace Comp2007Assignment2
                     lblCurrentBook.Text = book.Book;
                 }
             }
+        }
+
+        protected void btnPreviousChapter_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnNextChapter_Click(object sender, EventArgs e)
+        {
+
         }
 
       
