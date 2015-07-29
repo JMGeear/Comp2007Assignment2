@@ -46,12 +46,12 @@ namespace Comp2007Assignment2
                     using (DefaultConnection db = new DefaultConnection())
                     {
 
-                        user u = new user();
+                        bloguser u = new bloguser();
                         u.userID = user.Id;
                         u.fName = txtFName.Text;
                         u.lName = txtLName.Text;
 
-                        db.users.Add(u);
+                        db.blogusers.Add(u);
                         db.SaveChanges();
 
                     }

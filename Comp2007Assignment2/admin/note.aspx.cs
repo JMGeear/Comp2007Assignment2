@@ -286,7 +286,7 @@ namespace Comp2007Assignment2.admin
                         btitle.blogID = blogID;
                     }
 
-                    //set blog variable
+                    //set blog variable                    
                     b.blogID = blogID;
                     //set references variables
                     bref.bookName = ddlBook.SelectedValue;
