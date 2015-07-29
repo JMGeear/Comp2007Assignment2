@@ -269,7 +269,8 @@ namespace Comp2007Assignment2
                 var objE = (from b in db.BibleBasicEnglishes
                             where b.bookNum == bN 
                             select b).ToList();
-                
+
+                grdBible.DataSource = objE.ToList();
                 grdBible.DataBind();
 
             }

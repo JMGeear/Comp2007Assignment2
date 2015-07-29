@@ -17,25 +17,24 @@
         </div>
     </div>
 
-    <asp:Button ID="btnPreviousBook" runat="server" OnClick="btnPrevious_Click" Text="<< Previous <<" />
-    &nbsp;&nbsp;&nbsp;<asp:Label ID="lblCurrentBook" runat="server"  Text="Genesis"/>&nbsp;&nbsp;&nbsp;
-    <asp:Button ID="btnNextBook" runat="server" OnClick="btnNext_Click" Text=">> Next >>" />
+    <asp:Button ID="btnPreviousBook" runat="server" OnClick="btnPrevious_Click" Text="<< Previous <<" cssClass="btn btn-default"/>
+    &nbsp;&nbsp;&nbsp;<asp:Label ID="lblCurrentBook" runat="server" Text="Genesis" />&nbsp;&nbsp;&nbsp;
+    <asp:Button ID="btnNextBook" runat="server" OnClick="btnNext_Click" Text=">> Next >>" cssClass="btn btn-default" />
     <br />
 
-    <asp:Button ID="btnPreviousChapter" runat="server" OnClick="btnPreviousChapter_Click" Text="<< Previous <<" />
-    &nbsp;&nbsp;&nbsp;<asp:Label ID="lblCurrentChapter" runat="server"  Text="Chapter: "/>&nbsp;&nbsp;&nbsp;
-    <asp:Button ID="btnNextChapter" runat="server" OnClick="btnNextChapter_Click" Text=">> Next >>" />
+    <asp:Button ID="btnPreviousChapter" runat="server" OnClick="btnPreviousChapter_Click" Text="<< Previous <<" cssClass="btn btn-default"/>
+    &nbsp;&nbsp;&nbsp;<asp:Label ID="lblCurrentChapter" runat="server" Text="Chapter: " />&nbsp;&nbsp;&nbsp;
+    <asp:Button ID="btnNextChapter" runat="server" OnClick="btnNextChapter_Click" Text=">> Next >>" cssClass="btn btn-default"/>
     <asp:ListView ID="lvwBible" runat="server">
-
     </asp:ListView>
-
-    <asp:GridView ID="grdBible" runat="server" CssClass="table table-striped table-hover" AutoGenerateColumns="false" DataKeyName="ID">
-        <Columns>
-            <asp:BoundField DataField="Book" HeaderText="Book" />
-            <asp:BoundField DataField="Chapter" HeaderText="Chapter #:" />
-            <asp:BoundField DataField="Verse" HeaderText="Verse #:" />
-            <asp:BoundField DataField="VerseText" HeaderText="Verse" />
-        </Columns>
-    </asp:GridView>
-
+    <div class="well">
+        <asp:GridView ID="grdBible" runat="server" CssClass="table table-striped table-hover" AutoGenerateColumns="false" DataKeyName="ID">
+            <Columns>
+                <asp:BoundField DataField="Book" HeaderText="Book" />
+                <asp:BoundField DataField="Chapter" HeaderText="Chapter #:" />
+                <asp:BoundField DataField="Verse" HeaderText="Verse #:" />
+                <asp:BoundField DataField="VerseText" HeaderText="Verse" />
+            </Columns>
+        </asp:GridView>
+    </div>
 </asp:Content>
