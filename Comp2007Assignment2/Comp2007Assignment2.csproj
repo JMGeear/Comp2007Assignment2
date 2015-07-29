@@ -127,7 +127,7 @@
     <Content Include="admin\bibleMenu.aspx" />
     <Content Include="admin\note.aspx" />
     <Content Include="admin\notes.aspx" />
-    <Content Include="contact.aspx" />
+    <Content Include="bible.aspx" />
     <Content Include="Content\Scripts\main.js" />
     <Content Include="logout.aspx" />
     <Content Include="Content\images\asc.jpg" />
@@ -192,12 +192,12 @@
     <Compile Include="admin\notes.aspx.designer.cs">
       <DependentUpon>notes.aspx</DependentUpon>
     </Compile>
-    <Compile Include="contact.aspx.cs">
-      <DependentUpon>contact.aspx</DependentUpon>
+    <Compile Include="bible.aspx.cs">
+      <DependentUpon>bible.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="contact.aspx.designer.cs">
-      <DependentUpon>contact.aspx</DependentUpon>
+    <Compile Include="bible.aspx.designer.cs">
+      <DependentUpon>bible.aspx</DependentUpon>
     </Compile>
     <Compile Include="logout.aspx.cs">
       <DependentUpon>logout.aspx</DependentUpon>
