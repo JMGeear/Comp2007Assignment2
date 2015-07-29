@@ -23,7 +23,7 @@
     <br />
 
     <asp:Button ID="btnPreviousChapter" runat="server" OnClick="btnPreviousChapter_Click" Text="<< Previous <<" />
-    &nbsp;&nbsp;&nbsp;<asp:Label ID="Label1" runat="server"  Text="Genesis"/>&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;<asp:Label ID="lblCurrentChapter" runat="server"  Text="Chapter: "/>&nbsp;&nbsp;&nbsp;
     <asp:Button ID="btnNextChapter" runat="server" OnClick="btnNextChapter_Click" Text=">> Next >>" />
     <asp:ListView ID="lvwBible" runat="server">
 

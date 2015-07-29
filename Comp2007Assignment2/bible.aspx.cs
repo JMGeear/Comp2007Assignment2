@@ -16,7 +16,7 @@ namespace Comp2007Assignment2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
 
             if (!IsPostBack)
             {
@@ -104,9 +104,10 @@ namespace Comp2007Assignment2
 
         protected void ddlChapter_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int BookNum;
+
             try
             {
+                int BookNum;
                 using (DefaultConnection db = new DefaultConnection())
                 {
                     var bN = (from b in db.BibleBasicEnglishes
@@ -115,16 +116,8 @@ namespace Comp2007Assignment2
 
                     BookNum = Convert.ToInt32(bN.bookNum);
                 }
-            }
-            catch (Exception ex)
-            {
-                Response.Redirect("/errors.aspx");
-            }
 
-
-            Session["bookNum"] = BookNum;
-            try
-            {
+                Session["bookNum"] = BookNum;
                 using (DefaultConnection db = new DefaultConnection())
                 {
                     var book = (from b in db.BibleBasicEnglishes
@@ -133,31 +126,33 @@ namespace Comp2007Assignment2
 
                     lblCurrentBook.Text = book.Book;
                 }
+
+
+                if (BookNum == 1)
+                {
+                    btnPreviousBook.Visible = false;
+                }
+                else if (BookNum == 66)
+                {
+                    btnPreviousBook.Visible = true;
+                    btnNextBook.Visible = false;
+                }
+                else
+                {
+                    btnNextBook.Visible = true;
+                    btnPreviousBook.Visible = true;
+                }
+
             }
             catch (Exception ex)
             {
                 Response.Redirect("/errors.aspx");
             }
-
-            if (BookNum == 1)
-            {
-                btnPreviousBook.Visible = false;
-            }
-            else if (BookNum == 66)
-            {
-                btnPreviousBook.Visible = true;
-                btnNextBook.Visible = false;
-            }
-            else
-            {
-                btnNextBook.Visible = true;
-                btnPreviousBook.Visible = true;
-            }
         }
 
         protected void btnNext_Click(object sender, EventArgs e)
         {
-          
+
             Session["bookNum"] = Convert.ToInt32(Session["bookNum"]) + 1;
             int bookNum = Convert.ToInt32(Session["bookNum"]);
             if (Convert.ToInt32(Session["bookNum"]) >= 66)
@@ -207,7 +202,7 @@ namespace Comp2007Assignment2
         {
             Session["bookNum"] = Convert.ToInt32(Session["bookNum"]) - 1;
             int bookNum = Convert.ToInt32(Session["bookNum"]);
-            
+
             if (Convert.ToInt32(Session["bookNum"]) == 1)
             {
                 btnPreviousBook.Visible = false;
@@ -261,7 +256,7 @@ namespace Comp2007Assignment2
 
         }
 
-      
+
 
 
 

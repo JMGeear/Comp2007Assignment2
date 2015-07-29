@@ -64,8 +64,8 @@ namespace Comp2007Assignment2.admin
             var manager = new UserManager<IdentityUser>(userStore);
             var userID = User.Identity.GetUserId();
 
-            try
-            {
+            //try
+            //{
                 using (DefaultConnection db = new DefaultConnection())
                 {
                     int chapterid, verseid;
@@ -83,23 +83,24 @@ namespace Comp2007Assignment2.admin
 
                         if (objE != null)
                         {
-                            //foreach (var reff in objE)
-                            // {
-                            //     blogID = reff.blogID;
-                            //     ddlBook.SelectedValue = reff.bookName;
-                            //     chapterid = reff.chapterID;
-                            //     verseid = reff.verseID;
-                            //    TextVerse.Text = reff.verseText;
-                            //     titleTxt.Text = reff.title;
-                            //    txtBlog.Text = reff.post;
+                            foreach (var reff in objE)
+                            {
+                                blogID = reff.blogID;
+                                ddlBook.SelectedValue = reff.bookName;
+                                chapterid = reff.chapterID;
+                                verseid = reff.verseID;
+                                TextVerse.Text = reff.verseText;
+                                titleTxt.Text = reff.title;
+                                txtBlog.Text = reff.post;
+                            }
                         }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                Response.Redirect("/errors.aspx");
-            }
+            //}
+            //catch (Exception ex)
+            //{
+                //Response.Redirect("/errors.aspx");
+            //}
         }
 
 
@@ -255,12 +256,13 @@ namespace Comp2007Assignment2.admin
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            var userStore = new UserStore<IdentityUser>();
-            var manager = new UserManager<IdentityUser>(userStore);
-            var userID = User.Identity.GetUserId();
-            //do insert or update
             try
             {
+                var userStore = new UserStore<IdentityUser>();
+                var manager = new UserManager<IdentityUser>(userStore);
+                var userID = User.Identity.GetUserId();
+                //do insert or update
+
                 using (DefaultConnection db = new DefaultConnection())
                 {
                     blog b = new blog();
@@ -275,27 +277,12 @@ namespace Comp2007Assignment2.admin
 
                     if ((Request.QueryString["blogID"]) != null)
                     {
-                        var objE = (from bg in db.blogs
-                                    join br in db.blog_references on bg.blogID equals br.blogID
-                                    join bt in db.blog_title on bg.blogID equals bt.blogID
-                                    join bp in db.blog_post on bg.blogID equals bp.blogID
-                                    where bg.userID == userID && bg.blogID == blogID
-                                    select new { bg.blogID, br.bookName, br.chapterID, br.verseID, br.verseText, bt.title, bp.post });
-
-                        if (objE != null)
-                        {
-                            foreach (var reff in objE)
-                            {
-                                blogID = reff.blogID;
-                                ddlBook.SelectedValue = reff.bookName;
-                                chapterid = reff.chapterID;
-                                verseid = reff.verseID;
-                                TextVerse.Text = reff.verseText;
-                                titleTxt.Text = reff.title;
-                                txtBlog.Text = reff.post;
-                            }
-                        }
+                        blogID = Convert.ToInt32(Request.QueryString["blogID"]);
+                        bref.blogID = blogID;
+                        bpost.blogID = blogID;
+                        btitle.blogID = blogID;
                     }
+
                     //set blog variable
                     b.userID = userID;
                     //set references variables
@@ -327,13 +314,14 @@ namespace Comp2007Assignment2.admin
                     }
                     db.SaveChanges();
                 }
+
+
+                Response.Redirect("/admin/notes.aspx");
             }
             catch (Exception ex)
             {
                 Response.Redirect("/errors.aspx");
             }
-
-            Response.Redirect("/admin/notes.aspx");
         }
     }
 }

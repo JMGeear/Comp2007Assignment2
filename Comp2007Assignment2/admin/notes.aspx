@@ -16,9 +16,9 @@
             </asp:DropDownList>
         </div>
 
-        <asp:GridView ID="grdNotes" runat="server" CssClass="table table-striped" AutoGenerateColumns="false" OnRowDeleting="grdNotes_RowDeleting"
-            DataKeyNames="blogID" AllowPaging="true" PageSize="3" OnPageIndexChanging="grdNotes_PageIndexChanging"
-            OnRowDataBound="grdNotes_RowDataBound">
+        <asp:GridView ID="grdNotes" runat="server" CssClass="table table-striped" AutoGenerateColumns="false" 
+            DataKeyNames="blogID" AllowPaging="true" PageSize="3" OnPageIndexChanging="grdNotes_PageIndexChanging" OnRowDeleting="grdNotes_RowDeleting"
+            >
             <Columns>
                 <asp:BoundField DataField="blogID" Visible="false" />
                 <asp:BoundField DataField="bookName" HeaderText="Book" Visible="true" />
@@ -27,7 +27,7 @@
                 <asp:BoundField DataField="title" HeaderText="Title" />
                 <asp:HyperLinkField HeaderText="Edit" Text="Edit" NavigateUrl="note.aspx" DataNavigateUrlFields="blogID"
                     DataNavigateUrlFormatString="note.aspx?blogID={0}" />
-                <asp:CommandField HeaderText="Delete" DeleteText="Delete" ShowDeleteButton="true" />
+                <asp:CommandField HeaderText="Delete" DeleteText="Delete" ShowDeleteButton="true"/>
             </Columns>
         </asp:GridView>
 
