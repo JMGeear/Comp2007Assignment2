@@ -128,13 +128,10 @@ namespace Comp2007Assignment2.admin
 
         protected void grdNotes_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-
+            grdNotes.PageSize = e.NewPageIndex;
+            getNotes();
         }
 
-        protected void grdNotes_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-
-        }
 
 
         /**
