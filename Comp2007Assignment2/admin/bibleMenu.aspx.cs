@@ -16,27 +16,28 @@ using Microsoft.Owin.Security;
 
 namespace Comp2007Assignment2
 {
-    public partial class bibleMenu : System.Web.UI.Page
-    {
-        protected void Page_Load(object sender, EventArgs e)
+        public partial class bibleMenu : System.Web.UI.Page
         {
-            //get userID from asp db
-            var userStore = new UserStore<IdentityUser>();
-            var manager = new UserManager<IdentityUser>(userStore);
-            var userID = User.Identity.GetUserId();
-
-            //using userID to get user information fname and lname
-            using (DefaultConnection db = new DefaultConnection())
+            protected void Page_Load(object sender, EventArgs e)
             {
-                bloguser id = (from objs in db.blogusers
-                           where objs.userID == userID
-                           select objs).FirstOrDefault();
+                //get userID from asp db
+                var userStore = new UserStore<IdentityUser>();
+                var manager = new UserManager<IdentityUser>(userStore);
+                var userID = User.Identity.GetUserId();
 
-                lblUserId.Text = "Welcome " + id.fName;
-                
+                //using userID to get user information fname and lname
+                using (DefaultConnectionEF db = new DefaultConnectionEF())
+                {
+                    blogUser id = (from objs in db.blogUsers
+                                   where objs.userID == userID
+                                   select objs).FirstOrDefault();
+
+                    lblUserId.Text = "Welcome " + id.fName;
+
+                }
+
             }
 
         }
-
-    }
+    
 }

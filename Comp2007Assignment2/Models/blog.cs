@@ -14,6 +14,7 @@ namespace Comp2007Assignment2.Models
     
     public partial class blog
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public blog()
         {
             this.blog_post = new HashSet<blog_post>();
@@ -24,9 +25,11 @@ namespace Comp2007Assignment2.Models
         public int blogID { get; set; }
         public string userID { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<blog_post> blog_post { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<blog_references> blog_references { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<blog_title> blog_title { get; set; }
-        public virtual bloguser bloguser { get; set; }
     }
 }

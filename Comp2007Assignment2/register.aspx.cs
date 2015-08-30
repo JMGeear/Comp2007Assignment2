@@ -43,15 +43,15 @@ namespace Comp2007Assignment2
                     authenticationManager.SignIn(new AuthenticationProperties() { }, userIdentity);
 
                     //add user to users db
-                    using (DefaultConnection db = new DefaultConnection())
+                    using (DefaultConnectionEF db = new DefaultConnectionEF())
                     {
 
-                        bloguser u = new bloguser();
+                        blogUser u = new blogUser();
                         u.userID = user.Id;
                         u.fName = txtFName.Text;
                         u.lName = txtLName.Text;
 
-                        db.blogusers.Add(u);
+                        db.blogUsers.Add(u);
                         db.SaveChanges();
 
                     }

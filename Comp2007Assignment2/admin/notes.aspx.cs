@@ -27,9 +27,9 @@ namespace Comp2007Assignment2.admin
 
             try
             {
-                using (DefaultConnection db = new DefaultConnection())
+                using (DefaultConnectionEF db = new DefaultConnectionEF())
                 {
-                    bloguser id = (from objs in db.blogusers
+                    blogUser id = (from objs in db.blogUsers
                                where objs.userID == userID
                                select objs).FirstOrDefault();
                 }
@@ -58,7 +58,7 @@ namespace Comp2007Assignment2.admin
 
             try
             {
-                using (DefaultConnection db = new DefaultConnection())
+                using (DefaultConnectionEF db = new DefaultConnectionEF())
                 {
                     var objE = (from bg in db.blogs
 
@@ -91,7 +91,7 @@ namespace Comp2007Assignment2.admin
             //get the selected StudentID using the grids Data Key collection
             Int32 blogID = Convert.ToInt32(grdNotes.DataKeys[selectedRow].Values["blogID"]);
             
-                using (DefaultConnection db = new DefaultConnection())
+                using (DefaultConnectionEF db = new DefaultConnectionEF())
                 {
                     //query for blog result
                     blog b = (from objs in db.blogs

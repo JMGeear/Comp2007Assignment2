@@ -35,7 +35,7 @@ namespace Comp2007Assignment2
         {
 
             //connect using our connection string from web.config and EF context class
-            using (DefaultConnection conn = new DefaultConnection())
+            using (DefaultConnectionEF conn = new DefaultConnectionEF())
             {
                 //use link to query the Departments model
                 var bible = from b in conn.BibleBasicEnglishes

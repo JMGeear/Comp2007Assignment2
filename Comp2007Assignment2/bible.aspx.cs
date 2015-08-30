@@ -42,7 +42,7 @@ namespace Comp2007Assignment2
             ddlBook.Items.Clear();
             try
             {
-                using (DefaultConnection db = new DefaultConnection())
+                using (DefaultConnectionEF db = new DefaultConnectionEF())
                 {
 
                     var objB = (from b in db.BibleBasicEnglishes
@@ -81,7 +81,7 @@ namespace Comp2007Assignment2
 
                 try
                 {
-                    using (DefaultConnection db = new DefaultConnection())
+                    using (DefaultConnectionEF db = new DefaultConnectionEF())
                     {
                         var objC = (from c in db.BibleBasicEnglishes
                                     where c.Book == ddlBook.SelectedValue
@@ -110,7 +110,7 @@ namespace Comp2007Assignment2
             try
             {
                 int BookNum;
-                using (DefaultConnection db = new DefaultConnection())
+                using (DefaultConnectionEF db = new DefaultConnectionEF())
                 {
                     var bN = (from b in db.BibleBasicEnglishes
                               where b.Book == ddlBook.SelectedValue
@@ -120,7 +120,7 @@ namespace Comp2007Assignment2
                 }
 
                 Session["bookNum"] = BookNum;
-                using (DefaultConnection db = new DefaultConnection())
+                using (DefaultConnectionEF db = new DefaultConnectionEF())
                 {
                     var book = (from b in db.BibleBasicEnglishes
                                 where b.bookNum == BookNum
@@ -164,7 +164,7 @@ namespace Comp2007Assignment2
 
                 try
                 {
-                    using (DefaultConnection db = new DefaultConnection())
+                    using (DefaultConnectionEF db = new DefaultConnectionEF())
                     {
                         var book = (from b in db.BibleBasicEnglishes
                                     where b.bookNum == bookNum
@@ -185,7 +185,7 @@ namespace Comp2007Assignment2
                 btnPreviousBook.Visible = true;
                 try
                 {
-                    using (DefaultConnection db = new DefaultConnection())
+                    using (DefaultConnectionEF db = new DefaultConnectionEF())
                     {
                         var book = (from b in db.BibleBasicEnglishes
                                     where b.bookNum == bookNum
@@ -215,7 +215,7 @@ namespace Comp2007Assignment2
 
                 try
                 {
-                    using (DefaultConnection db = new DefaultConnection())
+                    using (DefaultConnectionEF db = new DefaultConnectionEF())
                     {
                         var book = (from b in db.BibleBasicEnglishes
                                     where b.bookNum == bookNum
@@ -235,7 +235,7 @@ namespace Comp2007Assignment2
 
                 try
                 {
-                    using (DefaultConnection db = new DefaultConnection())
+                    using (DefaultConnectionEF db = new DefaultConnectionEF())
                     {
                         var book = (from b in db.BibleBasicEnglishes
                                     where b.bookNum == bookNum
@@ -264,7 +264,7 @@ namespace Comp2007Assignment2
         public void getBible(int bookNum)
         {
             int bN = bookNum; 
-            using (DefaultConnection db = new DefaultConnection())
+            using (DefaultConnectionEF db = new DefaultConnectionEF())
             {
                 var objE = (from b in db.BibleBasicEnglishes
                             where b.bookNum == bN 

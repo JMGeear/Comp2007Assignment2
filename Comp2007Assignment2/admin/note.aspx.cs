@@ -29,9 +29,9 @@ namespace Comp2007Assignment2.admin
 
             try
             {
-                using (DefaultConnection db = new DefaultConnection())
+                using (DefaultConnectionEF db = new DefaultConnectionEF())
                 {
-                    bloguser id = (from objs in db.blogusers
+                    blogUser id = (from objs in db.blogUsers
                                where objs.userID == userID
                                select objs).FirstOrDefault();
                 }
@@ -66,7 +66,7 @@ namespace Comp2007Assignment2.admin
 
             //try
             //{
-            using (DefaultConnection db = new DefaultConnection())
+            using (DefaultConnectionEF db = new DefaultConnectionEF())
             {
                 int chapterid, verseid;
 
@@ -113,7 +113,7 @@ namespace Comp2007Assignment2.admin
             ddlBook.Items.Clear();
             try
             {
-                using (DefaultConnection db = new DefaultConnection())
+                using (DefaultConnectionEF db = new DefaultConnectionEF())
                 {
                     var objB = (from b in db.BibleBasicEnglishes
                                 orderby b.ID
@@ -159,7 +159,7 @@ namespace Comp2007Assignment2.admin
 
             try
             {
-                using (DefaultConnection db = new DefaultConnection())
+                using (DefaultConnectionEF db = new DefaultConnectionEF())
                 {
                     var Versetxt = (from v in db.BibleBasicEnglishes
                                     where v.Book == ddlBook.SelectedValue && v.Chapter.ToString() == ddlChapter.SelectedValue && v.Verse.ToString() == ddlVerse.SelectedValue
@@ -191,7 +191,7 @@ namespace Comp2007Assignment2.admin
 
                 try
                 {
-                    using (DefaultConnection db = new DefaultConnection())
+                    using (DefaultConnectionEF db = new DefaultConnectionEF())
                     {
                         var objC = (from c in db.BibleBasicEnglishes
                                     where c.Book == ddlBook.SelectedValue
@@ -225,7 +225,7 @@ namespace Comp2007Assignment2.admin
 
             try
             {
-                using (DefaultConnection db = new DefaultConnection())
+                using (DefaultConnectionEF db = new DefaultConnectionEF())
                 {
                     var Verse = (from v in db.BibleBasicEnglishes
                                  where v.Book == ddlBook.SelectedValue && v.Chapter.ToString() == ddlChapter.SelectedValue
@@ -266,7 +266,7 @@ namespace Comp2007Assignment2.admin
                 var userID = User.Identity.GetUserId();
                 //do insert or update
 
-                using (DefaultConnection db = new DefaultConnection())
+                using (DefaultConnectionEF db = new DefaultConnectionEF())
                 {
                     blog b = new blog();
                     blog_references bref = new blog_references();

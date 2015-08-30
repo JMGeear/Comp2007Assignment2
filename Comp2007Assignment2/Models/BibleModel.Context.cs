@@ -13,10 +13,10 @@ namespace Comp2007Assignment2.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DefaultConnection : DbContext
+    public partial class DefaultConnectionEF : DbContext
     {
-        public DefaultConnection()
-            : base("name=DefaultConnection")
+        public DefaultConnectionEF()
+            : base("name=DefaultConnectionEF")
         {
         }
     
@@ -30,6 +30,6 @@ namespace Comp2007Assignment2.Models
         public virtual DbSet<blog_post> blog_post { get; set; }
         public virtual DbSet<blog_references> blog_references { get; set; }
         public virtual DbSet<blog_title> blog_title { get; set; }
-        public virtual DbSet<bloguser> blogusers { get; set; }
+        public virtual DbSet<blogUser> blogUsers { get; set; }
     }
 }

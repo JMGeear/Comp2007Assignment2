@@ -21,6 +21,7 @@
     <IISExpressUseClassicPipelineMode />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -143,26 +144,26 @@
     <Content Include="Content\images\desc.jpg" />
     <Content Include="Content\Styles\css.css" />
     <Content Include="login.aspx" />
+    <Content Include="Models\BibleModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BibleModel.edmx</DependentUpon>
+      <LastGenOutput>BibleModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\BibleModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BibleModel.edmx</DependentUpon>
+      <LastGenOutput>BibleModel.cs</LastGenOutput>
+    </Content>
     <Content Include="passage.aspx" />
     <Content Include="register.aspx" />
     <Content Include="Site.Master" />
     <Content Include="packages.config" />
-    <EntityDeploy Include="Models\bibleModel.edmx">
+    <EntityDeploy Include="Models\BibleModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>bibleModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>BibleModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\bibleModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>bibleModel.edmx</DependentUpon>
-      <LastGenOutput>bibleModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\bibleModel.edmx.diagram">
-      <DependentUpon>bibleModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\bibleModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>bibleModel.edmx</DependentUpon>
-      <LastGenOutput>bibleModel.cs</LastGenOutput>
+    <Content Include="Models\BibleModel.edmx.diagram">
+      <DependentUpon>BibleModel.edmx</DependentUpon>
     </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -246,37 +247,37 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\BibleBasicEnglish.cs">
-      <DependentUpon>bibleModel.tt</DependentUpon>
+      <DependentUpon>BibleModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\bibleModel.Context.cs">
+    <Compile Include="Models\BibleModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>bibleModel.Context.tt</DependentUpon>
+      <DependentUpon>BibleModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\bibleModel.cs">
+    <Compile Include="Models\BibleModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>bibleModel.tt</DependentUpon>
+      <DependentUpon>BibleModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\bibleModel.Designer.cs">
+    <Compile Include="Models\BibleModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>bibleModel.edmx</DependentUpon>
+      <DependentUpon>BibleModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\blog.cs">
-      <DependentUpon>bibleModel.tt</DependentUpon>
+      <DependentUpon>BibleModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\bloguser.cs">
-      <DependentUpon>bibleModel.tt</DependentUpon>
+    <Compile Include="Models\blogUser.cs">
+      <DependentUpon>BibleModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\blog_post.cs">
-      <DependentUpon>bibleModel.tt</DependentUpon>
+      <DependentUpon>BibleModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\blog_references.cs">
-      <DependentUpon>bibleModel.tt</DependentUpon>
+      <DependentUpon>BibleModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\blog_title.cs">
-      <DependentUpon>bibleModel.tt</DependentUpon>
+      <DependentUpon>BibleModel.tt</DependentUpon>
     </Compile>
     <Compile Include="passage.aspx.cs">
       <DependentUpon>passage.aspx</DependentUpon>

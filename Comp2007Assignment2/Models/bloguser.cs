@@ -12,17 +12,10 @@ namespace Comp2007Assignment2.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class bloguser
+    public partial class blogUser
     {
-        public bloguser()
-        {
-            this.blogs = new HashSet<blog>();
-        }
-    
         public string userID { get; set; }
         public string fName { get; set; }
         public string lName { get; set; }
-    
-        public virtual ICollection<blog> blogs { get; set; }
     }
 }
